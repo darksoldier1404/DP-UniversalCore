@@ -16,6 +16,10 @@ public class UniversalCore extends JavaPlugin {
         return plugin;
     }
 
+    public List<JavaPlugin> getEnabledPlugins() {
+        return enabledPlugins;
+    }
+
     @Override
     public @NotNull Logger getLogger() {
         return log;
