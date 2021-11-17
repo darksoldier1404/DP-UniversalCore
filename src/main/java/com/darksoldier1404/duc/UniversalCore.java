@@ -1,22 +1,23 @@
 package com.darksoldier1404.duc;
 
+import com.darksoldier1404.duc.utils.PluginUtil;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 public class UniversalCore extends JavaPlugin {
     private static UniversalCore plugin;
     private Logger log;
-    private final List<JavaPlugin> enabledPlugins = new ArrayList<>();
+    private final Map<String, JavaPlugin> enabledPlugins = new HashMap<>();
 
     public static UniversalCore getInstance() {
         return plugin;
     }
 
-    public List<JavaPlugin> getEnabledPlugins() {
+    public Map<String, JavaPlugin> getEnabledPlugins() {
         return enabledPlugins;
     }
 
@@ -30,6 +31,7 @@ public class UniversalCore extends JavaPlugin {
         plugin = this;
         log = getLogger();
         log.info("UniversalCore has been enabled");
+        PluginUtil.loadALLPlugins();
     }
 
     @Override
