@@ -64,6 +64,8 @@ task DS_BUILD {
 
 repositories {
     mavenCentral()
+    jcenter()
+    maven { url 'https://jitpack.io' }
     maven { url "https://papermc.io/repo/repository/maven-public/" }
     maven {
         name "essentialsx-releases"
