@@ -3,12 +3,24 @@ import static sun.security.util.Debug.println
 
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
 group 'github.com/darksoldier1404'
 version = '1.0.0.1'
 
-compileJava.options.javaModuleVersion = '16'
+publishing{
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.darksoldier1404.duc'
+            artifactId = 'DP-UniversalCore'
+            version = version
+
+            from components.java
+        }
+    }
+}
+
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
