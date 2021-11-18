@@ -3,13 +3,14 @@ import static sun.security.util.Debug.println
 
 plugins {
     id 'java'
+    id 'groovy'
     id 'maven-publish'
 }
 
 group 'github.com/darksoldier1404'
 version = '1.0.0.1'
 
-publishing{
+publishing {
     publications {
         maven(MavenPublication) {
             groupId = 'com.darksoldier1404.duc'
@@ -18,6 +19,12 @@ publishing{
 
             from components.java
         }
+    }
+}
+jar {
+    enabled(true)
+    manifest {
+        attributes 'Main-Class': 'com.darksoldier1404.duc.DP-UniversalCore'
     }
 }
 
