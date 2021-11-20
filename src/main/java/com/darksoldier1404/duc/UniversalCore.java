@@ -2,7 +2,6 @@ package com.darksoldier1404.duc;
 
 import com.darksoldier1404.duc.utils.PluginUtil;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,11 +18,6 @@ public class UniversalCore extends JavaPlugin {
 
     public Map<String, JavaPlugin> getEnabledPlugins() {
         return enabledPlugins;
-    }
-
-    @Override
-    public @NotNull Logger getLogger() {
-        return log;
     }
 
     @Override
