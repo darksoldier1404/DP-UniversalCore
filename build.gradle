@@ -1,39 +1,23 @@
 import static sun.security.util.Debug.println
 
-
 plugins {
     id 'java'
-    id 'groovy'
-    id 'maven-publish'
+}
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
 
 group 'github.com/darksoldier1404'
-version = '1.0.0.2'
-sourceCompatibility = 16
+version = '1.0.0.31'
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.darksoldier1404.duc'
-            artifactId = 'DP-UniversalCore'
-            version = version
-
-            from components.java
-        }
-    }
-}
 jar {
-    enabled(true)
-    manifest {
-        attributes 'Main-Class': 'com.darksoldier1404.duc.DP-UniversalCore'
-    }
+    destinationDirectory.set(file("C:\\Minecraft Servers\\1.17.1 Play Ground\\plugins\\"))
 }
 
-//compileJava.options.encoding = 'UTF-8'
-//tasks.withType(JavaCompile) {
-//    options.encoding = 'UTF-8'
-//}
-
+task deleteMyFile(type: Delete) {
+    delete "C:\\Minecraft Servers\\1.17.1 Play Ground\\plugins\\DP-UniversalCore-" + version + ".jar"
+}
 
 task DS_BUILD {
     doFirst {
@@ -60,6 +44,7 @@ task DS_BUILD {
                 fr.close()
                 br.close()
 
+//                BufferedWriter out = new BufferedWriter(fw)
                 BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "UTF-8"));
                 for (String s : lines)
                     out.write(s)
@@ -72,8 +57,6 @@ task DS_BUILD {
 
 repositories {
     mavenCentral()
-    jcenter()
-    maven { url 'https://jitpack.io' }
     maven { url "https://papermc.io/repo/repository/maven-public/" }
     maven {
         name "essentialsx-releases"
@@ -81,7 +64,14 @@ repositories {
     }
     maven { url "https://repo.dmulloy2.net/repository/public/" }
     maven {
+        url "http://dpnw.site:8081/repository/maven-releases/"
+        allowInsecureProtocol = true
+    }
+    maven {
         url "https://org.bstats/bstats-bukkit"
+    }
+    maven {
+        url 'https://repo.spring.io/plugins-release/'
     }
 }
 
@@ -92,6 +82,7 @@ dependencies {
     compileOnly 'net.essentialsx:EssentialsX:2.19.0'
     compileOnly 'org.spigotmc:spigot:1.17-R0.1-SNAPSHOT'
     compileOnly "org.bstats:bstats-bukkit:2.2.1"
+    compileOnly 'com.darksoldier1404:DP-VirtualStorage:v1.0.0.26'
 }
 
 test {
