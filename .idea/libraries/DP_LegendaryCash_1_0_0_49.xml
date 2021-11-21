@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="DP-LegendaryCash-1.0.0.49">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../Minecraft Servers/DP-Plugins/DP-LegendaryCash-1.0.0.49.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../Minecraft Servers/DP-Plugins/DP-VirtualStorage-1.0.0.26.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

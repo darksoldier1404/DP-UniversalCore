@@ -3,6 +3,7 @@ package com.darksoldier1404.duc.utils;
 import com.darksoldier1404.duc.UniversalCore;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,13 +13,13 @@ import java.net.URL;
 import java.util.logging.Logger;
 
 public class UpdateChecker {
-    private static UniversalCore plugin = UniversalCore.getInstance();
-    private static final Logger log = plugin.getLogger();
+    private static final UniversalCore core = UniversalCore.getInstance();
+    private static final Logger log = core.getLogger();
     
-    public static void check() {
+    public static void check(JavaPlugin plugin) {
         String currentVersion = plugin.getDescription().getVersion();
         String pluginName = plugin.getDescription().getName();
-        Bukkit.getScheduler().runTask(plugin, () -> {
+        Bukkit.getScheduler().runTask(core, () -> {
             try {
                 HttpURLConnection connection = (HttpURLConnection) new URL("https://raw.githubusercontent.com/darksoldier1404/" + pluginName + "/master/src/main/resources/plugin.yml").openConnection();
                 connection.connect();
@@ -37,10 +38,10 @@ public class UpdateChecker {
         });
     }
 
-    public static void check(Player p) {
+    public static void check(JavaPlugin plugin, Player p) {
         String currentVersion = plugin.getDescription().getVersion();
         String pluginName = plugin.getDescription().getName();
-        Bukkit.getScheduler().runTask(plugin, () -> {
+        Bukkit.getScheduler().runTask(core, () -> {
             try {
                 HttpURLConnection connection = (HttpURLConnection) new URL("https://raw.githubusercontent.com/darksoldier1404/" + pluginName + "/master/src/main/resources/plugin.yml").openConnection();
                 connection.connect();
