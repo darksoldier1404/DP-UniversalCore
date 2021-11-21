@@ -36,7 +36,6 @@ public class UniversalCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        plugin = null;
         log.info(prefix + "DP-UniversalCore 플러그인 비활성화.");
         ConfigUtils.savePluginConfig(plugin, config);
     }
