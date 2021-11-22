@@ -3,6 +3,8 @@ package com.darksoldier1404.duc;
 import com.darksoldier1404.duc.enums.PluginName;
 import com.darksoldier1404.duc.utils.ConfigUtils;
 import com.darksoldier1404.duc.utils.PluginUtil;
+import com.darksoldier1404.duc.utils.SchedulerUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,10 +14,10 @@ import java.util.logging.Logger;
 
 public class UniversalCore extends JavaPlugin {
     private static UniversalCore plugin;
-    private YamlConfiguration config;
-    private Logger log;
+    public YamlConfiguration config;
+    public Logger log;
     public final String prefix = "§f[ §eDUC §f] ";
-    private final Map<PluginName, JavaPlugin> enabledPlugins = new HashMap<>();
+    public final Map<PluginName, JavaPlugin> enabledPlugins = new HashMap<>();
 
     public static UniversalCore getInstance() {
         return plugin;
@@ -31,12 +33,12 @@ public class UniversalCore extends JavaPlugin {
         log = getLogger();
         log.info(prefix + "DP-UniversalCore 플러그인 활성화.");
         PluginUtil.loadALLPlugins();
-        ConfigUtils.loadDefaultPluginConfig(plugin);
+        config = ConfigUtils.loadDefaultPluginConfig(plugin);
+        Bukkit.getScheduler().runTaskLater(plugin, () -> enabledPlugins.keySet().forEach(SchedulerUtils::initUpdateChecker), 1200L);
     }
 
     @Override
     public void onDisable() {
-        plugin = null;
         log.info(prefix + "DP-UniversalCore 플러그인 비활성화.");
         ConfigUtils.savePluginConfig(plugin, config);
     }

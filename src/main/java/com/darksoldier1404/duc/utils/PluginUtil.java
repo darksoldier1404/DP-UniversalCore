@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("all")
 public class PluginUtil {
     private static final UniversalCore plugin = UniversalCore.getInstance();
+    private static final String prefix = plugin.prefix;
     private static final PluginManager pm = Bukkit.getPluginManager();
     private static final Logger log = plugin.getLogger();
 
@@ -22,20 +23,20 @@ public class PluginUtil {
         pl = pm.getPlugin("DP-LegendaryCash");
         if (pl != null) {
             plugin.getEnabledPlugins().put(PluginName.LegendaryCash, (JavaPlugin) pl);
-            log.info("[DUC] DP-LegendaryCash 플러그인 활성화.");
+            log.info(prefix + " DP-LegendaryCash 플러그인 활성화.");
             new Metrics((JavaPlugin) pl, 13387);
         }
         pl = pm.getPlugin("DP-VirtualStorage");
         if (pl != null) {
             VirtualStorage vs = (VirtualStorage) pl;
             if(plugin.getServer().getPluginManager().getPlugin("Essentials") == null) {
-                log.warning("[DUC] 에센셜 플러그인이 감지되지 않음.");
-                log.warning("[DUC] Essentials 플러그인이 설치되어 있지 않아 DP-VirtualStorage 플러그인의 창고 구매 기능을 비활성화 합니다.");
+                log.warning(prefix + " 에센셜 플러그인이 감지되지 않음.");
+                log.warning(prefix + " Essentials 플러그인이 설치되어 있지 않아 DP-VirtualStorage 플러그인의 창고 구매 기능을 비활성화 합니다.");
                 vs.ess = null;
             }else{
                 vs.ess = (Essentials) plugin.getServer().getPluginManager().getPlugin("Essentials");
                 plugin.getEnabledPlugins().put(PluginName.VirtualStorage, (JavaPlugin) pl);
-                log.info("[DUC] DP-VirtualStorage 플러그인 활성화.");
+                log.info(prefix + " DP-VirtualStorage 플러그인 활성화.");
                 new Metrics((JavaPlugin) pl, 13386);
             }
         }
@@ -60,5 +61,17 @@ public class PluginUtil {
         Bukkit.getPluginManager().disablePlugin(pl);
         PluginUtil.plugin.getEnabledPlugins().put(PluginName.valueOf(pl.getName()), pl);
         Bukkit.getPluginManager().enablePlugin(pl);
+    }
+
+    public static boolean isUpdateCheckEnabled(PluginName name) {
+        return plugin.config.getBoolean("Settings."+name.getName()+".update-check");
+    }
+
+    public static long getUpdateCheckInterval(PluginName name) {
+        return plugin.config.getLong("Settings."+name.getName()+".update-check-interval");
+    }
+
+    public static boolean isMetricsEnabled(PluginName name) {
+        return plugin.config.getBoolean("Settings."+name.getName()+".use-metrics");
     }
 }
