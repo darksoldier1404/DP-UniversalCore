@@ -13,21 +13,22 @@ public class SchedulerUtils {
     private static final String prefix = core.prefix;
     public static final Map<PluginName, BukkitTask> tasks = new HashMap<>();
 
-    public static void initUpdateChecker(JavaPlugin plugin, int interval) {
-        try{
-            tasks.get(PluginName.valueOf(plugin.getName())).cancel();
-            tasks.remove(PluginName.valueOf(plugin.getName()));
-        }catch(Exception ignored){
+    public static void initUpdateChecker(PluginName name) {
+        if (!PluginUtil.isUpdateCheckEnabled(name)) return;
+        try {
+            tasks.get(name).cancel();
+            tasks.remove(name);
+        } catch (Exception ignored) {
 
         }
-        tasks.put(PluginName.valueOf(plugin.getName()), plugin.getServer().getScheduler().runTaskTimer(plugin, () -> UpdateChecker.check(plugin), 0L, interval * 20L));
+        tasks.put(name, core.getServer().getScheduler().runTaskTimer(core, () -> UpdateChecker.check(core.enabledPlugins.get(name)), 0L, PluginUtil.getUpdateCheckInterval(name) * 20L));
     }
 
     public static void cancelUpdateChecker(JavaPlugin plugin) {
-        try{
+        try {
             tasks.get(PluginName.valueOf(plugin.getName())).cancel();
             tasks.remove(PluginName.valueOf(plugin.getName()));
-        }catch(Exception ignored){
+        } catch (Exception ignored) {
 
         }
     }
