@@ -1,5 +1,6 @@
 package com.darksoldier1404.duc;
 
+import com.darksoldier1404.duc.commands.TestCommand;
 import com.darksoldier1404.duc.enums.PluginName;
 import com.darksoldier1404.duc.utils.ConfigUtils;
 import com.darksoldier1404.duc.utils.PluginUtil;
@@ -35,6 +36,7 @@ public class UniversalCore extends JavaPlugin {
         PluginUtil.loadALLPlugins();
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
         Bukkit.getScheduler().runTaskLater(plugin, () -> enabledPlugins.keySet().forEach(SchedulerUtils::initUpdateChecker), 1200L);
+        getCommand("duc").setExecutor(new TestCommand());
     }
 
     @Override
