@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 group 'github.com/darksoldier1404'
-version = '1.0.2.62'
+version = '1.0.2.63'
 
 
 
@@ -80,6 +80,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.jetbrains:annotations:20.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     compileOnly "io.papermc.paper:paper-api:1.17.1-R0.1-SNAPSHOT"

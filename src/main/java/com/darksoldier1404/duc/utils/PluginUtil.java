@@ -19,6 +19,7 @@ public class PluginUtil {
     private static final Logger log = plugin.getLogger();
 
     public static void loadALLPlugins() {
+        new Metrics(plugin, 13426);
         Plugin pl;
         pl = pm.getPlugin("DP-LegendaryCash");
         if (pl != null) {
