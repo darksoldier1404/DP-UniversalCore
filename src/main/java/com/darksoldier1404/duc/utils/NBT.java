@@ -2,7 +2,10 @@ package com.darksoldier1404.duc.utils;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
+import org.bukkit.entity.EntityType;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -193,6 +196,42 @@ public class NBT {
     /**
      * @param objitem ItemStack
      * @param key     String
+     * @return Material
+     */
+    @Nullable
+    public static Material getMaterialTag(ItemStack objitem, String key) {
+        net.minecraft.world.item.ItemStack item = CraftItemStack.asNMSCopy(objitem);
+        NBTTagCompound ntc = item.hasTag() ? item.getTag() : new NBTTagCompound();
+        return Material.getMaterial(ntc.getString(key));
+    }
+
+    /**
+     * @param objitem ItemStack
+     * @param key     String
+     * @return InventoryType
+     */
+    @Nullable
+    public static InventoryType getInventoryTypeTag(ItemStack objitem, String key) {
+        net.minecraft.world.item.ItemStack item = CraftItemStack.asNMSCopy(objitem);
+        NBTTagCompound ntc = item.hasTag() ? item.getTag() : new NBTTagCompound();
+        return InventoryType.valueOf(ntc.getString(key));
+    }
+
+    /**
+     * @param objitem ItemStack
+     * @param key     String
+     * @return NBTTagList
+     */
+    @Nullable
+    public static EntityType getEntityTypeTag(ItemStack objitem, String key) {
+        net.minecraft.world.item.ItemStack item = CraftItemStack.asNMSCopy(objitem);
+        NBTTagCompound ntc = item.hasTag() ? item.getTag() : new NBTTagCompound();
+        return EntityType.valueOf(ntc.getString(key));
+    }
+
+    /**
+     * @param objitem ItemStack
+     * @param key     String
      * @return boolean
      */
     public static boolean hasTagKey(ItemStack objitem, String key) {
@@ -350,6 +389,21 @@ public class NBT {
         net.minecraft.world.item.ItemStack item = CraftItemStack.asNMSCopy(objitem);
         NBTTagCompound ntc = item.hasTag() ? item.getTag() : new NBTTagCompound();
         ntc.setIntArray(key, value);
+        item.setTag(ntc);
+        return CraftItemStack.asBukkitCopy(item);
+    }
+
+    /**
+     * @param objitem ItemStack
+     * @param key     String
+     * @param value   Material
+     * @return ItemStack
+     */
+    @NotNull
+    public static ItemStack setMaterialTag(ItemStack objitem, String key, Material value) {
+        net.minecraft.world.item.ItemStack item = CraftItemStack.asNMSCopy(objitem);
+        NBTTagCompound ntc = item.hasTag() ? item.getTag() : new NBTTagCompound();
+        ntc.setString(key, value.name());
         item.setTag(ntc);
         return CraftItemStack.asBukkitCopy(item);
     }

@@ -37,6 +37,7 @@ public class UniversalCore extends JavaPlugin {
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
         Bukkit.getScheduler().runTaskLater(plugin, () -> enabledPlugins.keySet().forEach(SchedulerUtils::initUpdateChecker), 1200L);
         getCommand("duc").setExecutor(new TestCommand());
+
     }
 
     @Override
