@@ -131,4 +131,24 @@ public class ConfigUtils {
             return null;
         }
     }
+
+    @NotNull
+    public static YamlConfiguration initUserData(@NotNull JavaPlugin plugin, @NotNull String fileName, @NotNull String path, YamlConfiguration defaultData) {
+        File file = new File(plugin.getDataFolder() + "/" + path, fileName + ".yml");
+        if (!file.exists()) {
+            return defaultData;
+        } else {
+            return YamlConfiguration.loadConfiguration(file);
+        }
+    }
+
+    @NotNull
+    public static YamlConfiguration initUserData(@NotNull JavaPlugin plugin, @NotNull String fileName, YamlConfiguration defaultData) {
+        File file = new File(plugin.getDataFolder() + "/data", fileName + ".yml");
+        if (!file.exists()) {
+            return defaultData;
+        } else {
+            return YamlConfiguration.loadConfiguration(file);
+        }
+    }
 }
