@@ -2,6 +2,7 @@ package com.darksoldier1404.duc;
 
 import com.darksoldier1404.duc.commands.TestCommand;
 import com.darksoldier1404.duc.enums.PluginName;
+import com.darksoldier1404.duc.events.TestEvent;
 import com.darksoldier1404.duc.papi.PAPI_DUC;
 import com.darksoldier1404.duc.utils.ConfigUtils;
 import com.darksoldier1404.duc.utils.PluginUtil;
@@ -41,6 +42,7 @@ public class UniversalCore extends JavaPlugin {
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
         PluginUtil.loadALLPlugins();
         Bukkit.getScheduler().runTaskLater(plugin, () -> enabledPlugins.keySet().forEach(SchedulerUtils::initUpdateChecker), 1200L);
+        plugin.getServer().getPluginManager().registerEvents(new TestEvent(), plugin);
         getCommand("duc").setExecutor(new TestCommand());
         new PAPI_DUC().register();
     }

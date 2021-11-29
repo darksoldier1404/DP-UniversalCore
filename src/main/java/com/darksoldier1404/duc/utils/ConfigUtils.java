@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 @SuppressWarnings("all")
 public class ConfigUtils {
     private static final UniversalCore core = UniversalCore.getInstance();
-    private static final Logger log = core.getLogger();
+    private static final Logger log = core.log;
 
     @NotNull
     public static YamlConfiguration loadDefaultPluginConfig(@NotNull JavaPlugin plugin) {
