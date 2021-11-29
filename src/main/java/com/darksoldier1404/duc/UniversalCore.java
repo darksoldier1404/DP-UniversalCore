@@ -2,9 +2,12 @@ package com.darksoldier1404.duc;
 
 import com.darksoldier1404.duc.commands.TestCommand;
 import com.darksoldier1404.duc.enums.PluginName;
+import com.darksoldier1404.duc.papi.PAPI_DUC;
 import com.darksoldier1404.duc.utils.ConfigUtils;
 import com.darksoldier1404.duc.utils.PluginUtil;
 import com.darksoldier1404.duc.utils.SchedulerUtils;
+import com.earth2me.essentials.Essentials;
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +22,8 @@ public class UniversalCore extends JavaPlugin {
     public Logger log;
     public final String prefix = "§f[ §eDUC §f] ";
     public final Map<PluginName, JavaPlugin> enabledPlugins = new HashMap<>();
+    public Essentials ess = null;
+    public PlaceholderAPIPlugin papi = null;
 
     public static UniversalCore getInstance() {
         return plugin;
@@ -33,11 +38,11 @@ public class UniversalCore extends JavaPlugin {
         plugin = this;
         log = getLogger();
         log.info(prefix + "DP-UniversalCore 플러그인 활성화.");
-        PluginUtil.loadALLPlugins();
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
+        PluginUtil.loadALLPlugins();
         Bukkit.getScheduler().runTaskLater(plugin, () -> enabledPlugins.keySet().forEach(SchedulerUtils::initUpdateChecker), 1200L);
         getCommand("duc").setExecutor(new TestCommand());
-
+        new PAPI_DUC().register();
     }
 
     @Override
