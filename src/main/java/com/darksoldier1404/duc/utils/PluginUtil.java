@@ -50,6 +50,12 @@ public class PluginUtil {
                 new Metrics((JavaPlugin) pl, 13386);
             }
         }
+        pl = pm.getPlugin("DP-SimplePrefix");
+        if (pl != null) {
+            plugin.getEnabledPlugins().put(PluginName.SimplePrefix, (JavaPlugin) pl);
+            log.info(prefix + " DP-SimplePrefix 플러그인 활성화.");
+            new Metrics((JavaPlugin) pl, 13460);
+        }
     }
 
     public static boolean isPluginEnabled(JavaPlugin pl) {

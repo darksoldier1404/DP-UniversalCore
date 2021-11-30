@@ -18,8 +18,3 @@ Settings:
     update-check: true
     update-check-interval: 3600
     use-metrics: true
-
-  DP-SimplePrefix:
-    update-check: true
-    update-check-interval: 3600
-    use-metrics: true
