@@ -8,7 +8,7 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.Location;
 import org.bukkit.Particle;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
@@ -27,7 +27,7 @@ public class ParticleUtil {
     public static void sendParticlePacket(Location loc) {
         PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(Particles.D, false, loc.getX(), loc.getY(), loc.getZ(), 0, 0, 0, 0, 0);
         for (Player p : loc.getWorld().getPlayers()) {
-            ((CraftPlayer) p).getHandle().b.sendPacket(packet);
+            ((CraftPlayer) p).getHandle().b.a(packet);
         }
     }
 
