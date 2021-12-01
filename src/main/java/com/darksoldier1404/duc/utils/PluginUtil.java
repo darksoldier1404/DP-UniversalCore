@@ -20,7 +20,9 @@ public class PluginUtil {
     private static final Logger log = plugin.getLogger();
 
     public static void loadALLPlugins() {
-        new Metrics(plugin, 13426);
+        if(isMetricsEnabled(PluginName.UniversalCore)) {
+            new Metrics(plugin, 13426);
+        }
         Plugin pl;
         pl = pm.getPlugin("Essentials");
         if (pl != null) {
@@ -34,7 +36,9 @@ public class PluginUtil {
         if (pl != null) {
             plugin.getEnabledPlugins().put(PluginName.LegendaryCash, (JavaPlugin) pl);
             log.info(prefix + " DP-LegendaryCash 플러그인 활성화.");
-            new Metrics((JavaPlugin) pl, 13387);
+            if(isMetricsEnabled(PluginName.LegendaryCash)) {
+                new Metrics((JavaPlugin) pl, 13387);
+            }
         }
         pl = pm.getPlugin("DP-VirtualStorage");
         if (pl != null) {
@@ -47,20 +51,26 @@ public class PluginUtil {
                 vs.ess = plugin.ess;
                 plugin.getEnabledPlugins().put(PluginName.VirtualStorage, (JavaPlugin) pl);
                 log.info(prefix + " DP-VirtualStorage 플러그인 활성화.");
-                new Metrics((JavaPlugin) pl, 13386);
+                if(isMetricsEnabled(PluginName.VirtualStorage)) {
+                    new Metrics((JavaPlugin) pl, 13386);
+                }
             }
         }
         pl = pm.getPlugin("DP-SimplePrefix");
         if (pl != null) {
             plugin.getEnabledPlugins().put(PluginName.SimplePrefix, (JavaPlugin) pl);
             log.info(prefix + " DP-SimplePrefix 플러그인 활성화.");
-            new Metrics((JavaPlugin) pl, 13460);
+            if(isMetricsEnabled(PluginName.SimplePrefix)) {
+                new Metrics((JavaPlugin) pl, 13460);
+            }
         }
         pl = pm.getPlugin("DP-ItemEditor");
         if (pl != null) {
             plugin.getEnabledPlugins().put(PluginName.ItemEditor, (JavaPlugin) pl);
             log.info(prefix + " DP-ItemEditor 플러그인 활성화.");
-            new Metrics((JavaPlugin) pl, 13462);
+            if(isMetricsEnabled(PluginName.ItemEditor)) {
+                new Metrics((JavaPlugin) pl, 13462);
+            }
         }
     }
 
