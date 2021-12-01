@@ -56,6 +56,12 @@ public class PluginUtil {
             log.info(prefix + " DP-SimplePrefix 플러그인 활성화.");
             new Metrics((JavaPlugin) pl, 13460);
         }
+        pl = pm.getPlugin("DP-ItemEditor");
+        if (pl != null) {
+            plugin.getEnabledPlugins().put(PluginName.ItemEditor, (JavaPlugin) pl);
+            log.info(prefix + " DP-ItemEditor 플러그인 활성화.");
+            new Metrics((JavaPlugin) pl, 13462);
+        }
     }
 
     public static boolean isPluginEnabled(JavaPlugin pl) {

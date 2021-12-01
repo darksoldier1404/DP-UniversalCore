@@ -23,3 +23,7 @@ Settings:
     update-check: true
     update-check-interval: 3600
     use-metrics: true
+  DP-ItemEditor:
+    update-check: true
+    update-check-interval: 3600
+    use-metrics: true

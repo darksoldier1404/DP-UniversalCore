@@ -6,6 +6,7 @@ public enum PluginName {
     LegendaryCash("DP-LegendaryCash"),
     VirtualStorage("DP-VirtualStorage"),
     SimplePrefix("DP-SimplePrefix"),
+    ItemEditor("DP-ItemEditor"),
     ;
 
     private final String name;
