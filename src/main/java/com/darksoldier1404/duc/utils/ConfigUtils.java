@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 @SuppressWarnings("all")
@@ -93,6 +95,27 @@ public class ConfigUtils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static List<YamlConfiguration> loadCustomDataList(@NotNull JavaPlugin plugin, @NotNull String path) {
+        List<YamlConfiguration> dataList = new ArrayList<>();
+        File folder = new File(plugin.getDataFolder() + "/" + path);
+        File[] files = folder.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile()) {
+                    try {
+                        YamlConfiguration data = YamlConfiguration.loadConfiguration(file);
+                        log.info("[DUC] " + plugin.getName() + " " + file.getName() + " 파일 불러오기 성공.");
+                        dataList.add(data);
+                    } catch (Exception e) {
+                        log.warning("[DUC] " + plugin.getName() + " " + file.getName() + " 파일 불러오기 실패.");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        return dataList;
     }
 
     // create

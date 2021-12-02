@@ -8,6 +8,7 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.HashMap;
 import java.util.Map;
 
+@SuppressWarnings("all")
 public class SchedulerUtils {
     private static final UniversalCore core = UniversalCore.getInstance();
     private static final String prefix = core.prefix;

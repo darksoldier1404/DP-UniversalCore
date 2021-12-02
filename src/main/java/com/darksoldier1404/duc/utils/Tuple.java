@@ -1,5 +1,6 @@
 package com.darksoldier1404.duc.utils;
 
+@SuppressWarnings("all")
 public record Tuple<A, B>(A a, B b) {
 
     public static <A, B> Tuple<A, B> of(A a, B b) {

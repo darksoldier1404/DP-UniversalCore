@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+@SuppressWarnings("all")
 public class TargetAPI {
     private static final UniversalCore plugin = UniversalCore.getInstance();
 
