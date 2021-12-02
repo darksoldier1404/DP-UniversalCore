@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Base64;
 
+@SuppressWarnings("all")
 public class ItemStackSerializer {
 
     // Serialize an ItemStack to Base64 string

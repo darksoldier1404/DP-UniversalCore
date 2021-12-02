@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+@SuppressWarnings("all")
 public class UniversalCore extends JavaPlugin {
     private static UniversalCore plugin;
     public YamlConfiguration config;

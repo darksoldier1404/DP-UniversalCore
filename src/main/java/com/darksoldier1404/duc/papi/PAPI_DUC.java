@@ -5,6 +5,7 @@ import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("all")
 public class PAPI_DUC extends PlaceholderExpansion {
     private final UniversalCore plugin = UniversalCore.getInstance();
 
