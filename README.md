@@ -12,5 +12,5 @@ repositories
 ```
 dependencies
 ```
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.83'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.84'
 ```
