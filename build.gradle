@@ -60,33 +60,33 @@ task DS_BUILD {
 repositories {
     mavenCentral()
     maven {
-        url "http://papermc.io/repo/repository/maven-public/"
-        allowInsecureProtocol = true
+        name = "Paper"
+        url "https://papermc.io/repo/repository/maven-public/"
+    }
+    maven {
+        name = "Mojang"
+        url = uri("https://libraries.minecraft.net/")
     }
     maven {
         name "essentialsx-releases"
-        url "http://repo.essentialsx.net/releases/"
-        allowInsecureProtocol = true
+        url "https://repo.essentialsx.net/releases/"
     }
     maven {
+        name = "Spigot"
         url "https://repo.dmulloy2.net/repository/public/"
-        allowInsecureProtocol = true
     }
     maven {
         url "http://dpnw.site:8081/repository/maven-public/"
         allowInsecureProtocol = true
     }
     maven {
-        url "http://org.bstats/bstats-bukkit"
-        allowInsecureProtocol = true
+        url "https://org.bstats/bstats-bukkit"
     }
     maven {
-        url 'http://repo.spring.io/plugins-release/'
-        allowInsecureProtocol = true
+        url 'https://repo.spring.io/plugins-release/'
     }
     maven {
-        url = 'http://repo.extendedclip.com/content/repositories/placeholderapi/'
-        allowInsecureProtocol = true
+        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
     }
 }
 
