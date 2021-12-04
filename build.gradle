@@ -60,12 +60,12 @@ task DS_BUILD {
 repositories {
     mavenCentral()
     maven {
-        url "https://papermc.io/repo/repository/maven-public/"
+        url "http://papermc.io/repo/repository/maven-public/"
         allowInsecureProtocol = true
     }
     maven {
         name "essentialsx-releases"
-        url "https://repo.essentialsx.net/releases/"
+        url "http://repo.essentialsx.net/releases/"
         allowInsecureProtocol = true
     }
     maven {
@@ -77,15 +77,15 @@ repositories {
         allowInsecureProtocol = true
     }
     maven {
-        url "https://org.bstats/bstats-bukkit"
+        url "http://org.bstats/bstats-bukkit"
         allowInsecureProtocol = true
     }
     maven {
-        url 'https://repo.spring.io/plugins-release/'
+        url 'http://repo.spring.io/plugins-release/'
         allowInsecureProtocol = true
     }
     maven {
-        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        url = 'http://repo.extendedclip.com/content/repositories/placeholderapi/'
         allowInsecureProtocol = true
     }
 }
