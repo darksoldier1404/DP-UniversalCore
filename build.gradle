@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 group 'github.com/darksoldier1404'
-version = '1.0.3.83'
+version = '1.0.3.84'
 
 
 compileJava.options.encoding = 'UTF-8'
