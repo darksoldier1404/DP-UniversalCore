@@ -60,24 +60,31 @@ task DS_BUILD {
 
 repositories {
     mavenCentral()
-    maven { url "https://papermc.io/repo/repository/maven-public/" }
+    maven { url "https://papermc.io/repo/repository/maven-public/" allowInsecureProtocol = true}
     maven {
         name "essentialsx-releases"
         url "https://repo.essentialsx.net/releases/"
+        allowInsecureProtocol = true
     }
-    maven { url "https://repo.dmulloy2.net/repository/public/" }
+    maven { 
+    url "https://repo.dmulloy2.net/repository/public/" 
+    allowInsecureProtocol = true
+    }
     maven {
         url "http://dpnw.site:8081/repository/maven-public/"
         allowInsecureProtocol = true
     }
     maven {
         url "https://org.bstats/bstats-bukkit"
+        allowInsecureProtocol = true
     }
     maven {
         url 'https://repo.spring.io/plugins-release/'
+        allowInsecureProtocol = true
     }
     maven {
         url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
+        allowInsecureProtocol = true
     }
 }
 
