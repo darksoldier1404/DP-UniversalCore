@@ -18,10 +18,6 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }
 
-jar {
-    destinationDirectory.set(file("C:\\Minecraft Servers\\1.18 Play Ground\\plugins\\"))
-}
-
 task deleteMyFile(type: Delete) {
     delete "C:\\Minecraft Servers\\1.18 Play Ground\\plugins\\DP-UniversalCore-" + version + ".jar"
 }
