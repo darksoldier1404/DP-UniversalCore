@@ -7,7 +7,6 @@ group 'github.com/darksoldier1404'
 version = '1.0.3.83'
 
 
-
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -16,10 +15,6 @@ tasks.withType(JavaCompile) {
 
 java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-}
-
-jar {
-    destinationDirectory.set(file("C:\\Minecraft Servers\\1.18 Play Ground\\plugins\\"))
 }
 
 task deleteMyFile(type: Delete) {
@@ -64,12 +59,22 @@ task DS_BUILD {
 
 repositories {
     mavenCentral()
-    maven { url "https://papermc.io/repo/repository/maven-public/" }
+    maven {
+        name = "Paper"
+        url "https://papermc.io/repo/repository/maven-public/"
+    }
+    maven {
+        name = "Mojang"
+        url = uri("https://libraries.minecraft.net/")
+    }
     maven {
         name "essentialsx-releases"
         url "https://repo.essentialsx.net/releases/"
     }
-    maven { url "https://repo.dmulloy2.net/repository/public/" }
+    maven {
+        name = "Spigot"
+        url "https://repo.dmulloy2.net/repository/public/"
+    }
     maven {
         url "http://dpnw.site:8081/repository/maven-public/"
         allowInsecureProtocol = true

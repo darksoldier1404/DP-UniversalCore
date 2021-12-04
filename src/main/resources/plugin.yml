@@ -1,14 +1,7 @@
 name: DP-UniversalCore
-version: 1.0.3.83
+version: 1.0.3.85
 main: com.darksoldier1404.duc.UniversalCore
 api-version: 1.18
 authors: [ DEAD_POOLIO_ ]
-softdepend:
-  - Essentials
-  - PlaceholderAPI
-  - ProtocolLib
-  - DP-LegendaryCash
-  - DP-VirtualStorage
-  - DP-SimplePrefix
 commands:
   duc:

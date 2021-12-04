@@ -2,6 +2,7 @@ package com.darksoldier1404.duc.utils;
 
 import com.darksoldier1404.duc.UniversalCore;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -15,6 +16,11 @@ import java.util.logging.Logger;
 public class ConfigUtils {
     private static final UniversalCore core = UniversalCore.getInstance();
     private static final Logger log = core.log;
+
+    public static void test() {
+        Player p = null;
+
+    }
 
     @NotNull
     public static YamlConfiguration loadDefaultPluginConfig(@NotNull JavaPlugin plugin) {

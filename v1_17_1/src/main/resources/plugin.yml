@@ -3,7 +3,7 @@ version: 1.0.3.83
 main: com.darksoldier1404.duc.UniversalCore
 api-version: 1.17
 authors: [ DEAD_POOLIO_ ]
-softdepend:
+loadbefore:
   - Essentials
   - PlaceholderAPI
   - ProtocolLib
