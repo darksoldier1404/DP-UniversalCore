@@ -1,0 +1,136 @@
+package net.wesjd.anvilgui.version;
+
+
+import net.minecraft.server.v1_15_R1.*;
+import net.wesjd.anvilgui.version.special.AnvilContainer1_15_2_R1;
+import org.bukkit.Bukkit;
+import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_15_R1.event.CraftEventFactory;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+
+public class Wrapper1_15_R1 implements VersionWrapper {
+
+    private final boolean isMatchVersion = Bukkit.getBukkitVersion().contains("1.15.2");
+
+    private int getRealNextContainerId(Player player) {
+        return toNMS(player).nextContainerCounter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getNextContainerId(Player player, Object container) {
+        if (isMatchVersion){
+            return ((AnvilContainer1_15_2_R1) container).getContainerId();
+        }
+        return ((AnvilContainer) container).getContainerId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void handleInventoryCloseEvent(Player player) {
+        CraftEventFactory.handleInventoryCloseEvent(toNMS(player));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void sendPacketOpenWindow(Player player, int containerId, String guiTitle) {
+        toNMS(player).playerConnection.sendPacket(new PacketPlayOutOpenWindow(containerId, Containers.ANVIL, new ChatComponentText(guiTitle)));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void sendPacketCloseWindow(Player player, int containerId) {
+        toNMS(player).playerConnection.sendPacket(new PacketPlayOutCloseWindow(containerId));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setActiveContainerDefault(Player player) {
+        (toNMS(player)).activeContainer = (toNMS(player)).activeContainer;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setActiveContainer(Player player, Object container) {
+        (toNMS(player)).activeContainer = (Container)container;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setActiveContainerId(Object container, int containerId) {
+        //noop
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addActiveContainerSlotListener(Object container, Player player) {
+        toNMS(player).updateInventory((Container) container);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Inventory toBukkitInventory(Object container) {
+        return ((Container) container).getBukkitView().getTopInventory();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Object newContainerAnvil(Player player, String guiTitle) {
+        if (isMatchVersion){
+            return new AnvilContainer1_15_2_R1(player,getRealNextContainerId(player),guiTitle);
+        }
+        return new AnvilContainer(player, guiTitle);
+    }
+
+    /**
+     * Turns a {@link Player} into an NMS one
+     *
+     * @param player The player to be converted
+     * @return the NMS EntityPlayer
+     */
+    private EntityPlayer toNMS(Player player) {
+        return ((CraftPlayer) player).getHandle();
+    }
+
+    /**
+     * Modifications to ContainerAnvil that makes it so you don't have to have xp to use this anvil
+     */
+    private class AnvilContainer extends ContainerAnvil {
+        public AnvilContainer(Player player, String guiTitle) {
+            super(Wrapper1_15_R1.this.getRealNextContainerId(player), ((CraftPlayer)player).getHandle().inventory,
+                    ContainerAccess.at(((CraftWorld)player.getWorld()).getHandle(), new BlockPosition(0, 0, 0)));
+            this.checkReachable = false;
+            setTitle(new ChatMessage(guiTitle));
+        }
+
+        @Override
+        public void b(EntityHuman player) {}
+
+
+        public int getContainerId() {
+            return this.windowId;
+        }
+    }
+}
