@@ -7,6 +7,7 @@ public enum PluginName {
     VirtualStorage("DP-VirtualStorage"),
     SimplePrefix("DP-SimplePrefix"),
     ItemEditor("DP-ItemEditor"),
+    SimpleMenu("DP-SimpleMenu"),
     ;
 
     private final String name;
