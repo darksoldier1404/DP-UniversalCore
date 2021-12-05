@@ -72,14 +72,6 @@ public class PluginUtil {
                 new Metrics((JavaPlugin) pl, 13462);
             }
         }
-        pl = pm.getPlugin("DP-SimpleMenu");
-        if (pl != null) {
-            plugin.getEnabledPlugins().put(PluginName.SimpleMenu, (JavaPlugin) pl);
-            log.info(prefix + " DP-SimpleMenu 플러그인 활성화.");
-            if(isMetricsEnabled(PluginName.SimpleMenu)) {
-                new Metrics((JavaPlugin) pl, 13499);
-            }
-        }
     }
 
     public static boolean isPluginEnabled(JavaPlugin pl) {
