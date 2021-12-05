@@ -1,9 +1,9 @@
 name: DP-UniversalCore
-version: 1.0.2.74
+version: 1.0.3.115
 main: com.darksoldier1404.duc.UniversalCore
 api-version: 1.12
 authors: [ DEAD_POOLIO_ ]
-softdepend:
+loadbefore:
   - Essentials
   - PlaceholderAPI
   - ProtocolLib
