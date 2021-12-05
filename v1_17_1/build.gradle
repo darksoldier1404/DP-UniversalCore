@@ -17,8 +17,10 @@ build {
 }
 
 group 'github.com/darksoldier1404'
-version '1.0.3.83'
-
+version = '1.0.3.121'
+configurations {
+    jar.archiveName = 'DP-UniversalCore-_' + name + '-' + version + '.jar'
+}
 repositories {
     mavenCentral()
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
