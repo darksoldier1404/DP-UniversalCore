@@ -12,5 +12,11 @@ repositories
 ```
 dependencies
 ```
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.84'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.12.2'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.13.2'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.14.4'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.15.2'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.16.5'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.17.1'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.18'
 ```
