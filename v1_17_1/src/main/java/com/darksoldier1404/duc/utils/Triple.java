@@ -1,21 +1,48 @@
 package com.darksoldier1404.duc.utils;
 
 @SuppressWarnings("all")
-public record Triple<A, B, C>(A a, B b, C c) {
+public class Triple<A, B, C> {
+    public A a;
 
-    public static <A, B, C> Triple<A, B, C> of(A a, B b, C c) {
-        return new Triple<>(a, b, c);
+    public B b;
+
+    public C c;
+
+    public Triple(final A a, final B b, final C c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    }
+
+    public static <A, B, C> Triple<A, B, C> of(final A a, final B b, final C c) {
+        return new Triple<A, B, C>(a, b, c);
     }
 
     public A getA() {
-        return a;
+        return this.a;
     }
 
     public B getB() {
-        return b;
+        return this.b;
     }
 
     public C getC() {
-        return c;
+        return this.c;
+    }
+
+    public void setA(final A a) {
+        this.a = a;
+    }
+
+    public void setB(final B b) {
+        this.b = b;
+    }
+
+    public void setC(final C c) {
+        this.c = c;
+    }
+
+    public String toString() {
+        return "[" + this.a + ", " + this.b + ", " + this.c + "]";
     }
 }
