@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 group 'github.com/darksoldier1404'
-version = '1.0.3.115'
+version = '1.0.3.121'
 
 
 compileJava.options.encoding = 'UTF-8'
@@ -30,7 +30,7 @@ task DS_BUILD {
         String updatedVersion = buildFile.getText().replaceFirst("version = '" + v + "'", "version = '" + newVersion + "'")
 
         allprojects.forEach(p -> {
-            p.version = newVersion
+            p.buildFile.setText(p.buildFile.getText().replaceFirst("version = '" + v + "'", "version = '" + newVersion + "'"))
             println "Project Module : " + p.name
             p.sourceSets.main.resources.srcDirs().getFiles().forEach(o -> {
                 if (o.getName().equals("plugin.yml")) {
