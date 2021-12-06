@@ -407,40 +407,4 @@ public class NBT {
         item.setTag(ntc);
         return CraftItemStack.asBukkitCopy(item);
     }
-
-    // ItemStackSerializer
-
-    /**
-     * @param objitem ItemStack
-     * @param key     String
-     * @param value   ItemStack
-     * @return ItemStack
-     */
-    public static ItemStack setItemStackTag(ItemStack objitem, String key, ItemStack value) {
-        String sitem = ItemStackSerializer.serialize(value);
-        // split sitem by 255 char
-        String[] sitems = sitem.split("(?<=\\G.{288})");
-
-        for (int i = 0; i < sitems.length; i++) {
-            objitem = NBT.setStringTag(objitem, key+i, sitems[i]);
-        }
-        objitem = NBT.setIntTag(objitem, key + "_size", sitems.length);
-        return objitem;
-    }
-
-    /**
-     * @param objitem ItemStack
-     * @param key     String
-     * @return ItemStack
-     */
-    @Nullable
-    public static ItemStack getItemStackTag(ItemStack objitem, String key) {
-        int length = NBT.getIntegerTag(objitem, key + "_size");
-        String s = "";
-        for (int i = 0; i < length; i++) {
-            s += NBT.getStringTag(objitem, key + i);
-        }
-        return ItemStackSerializer.deserialize(s);
-    }
-
 }
