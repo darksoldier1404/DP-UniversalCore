@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("all")
 public class UpdateChecker {
@@ -25,7 +26,7 @@ public class UpdateChecker {
             try {
                 HttpURLConnection connection = (HttpURLConnection) new URL("https://raw.githubusercontent.com/darksoldier1404/" + pluginName + "/master/src/main/resources/plugin.yml").openConnection();
                 connection.connect();
-                String rr = new BufferedReader(new InputStreamReader(connection.getInputStream())).lines().toList().get(1).split(" ")[1];
+                String rr = new BufferedReader(new InputStreamReader(connection.getInputStream())).lines().collect(Collectors.toList()).get(1).split(" ")[1];
                 if (!currentVersion.equals(rr)) {
                     log.info(prefix + pluginName + " : A new version of LegendaryCash is available! " + rr);
                     log.info(prefix + pluginName + " : This plugin's version is " + currentVersion);
@@ -47,7 +48,7 @@ public class UpdateChecker {
             try {
                 HttpURLConnection connection = (HttpURLConnection) new URL("https://raw.githubusercontent.com/darksoldier1404/" + pluginName + "/master/src/main/resources/plugin.yml").openConnection();
                 connection.connect();
-                String rr = new BufferedReader(new InputStreamReader(connection.getInputStream())).lines().toList().get(1).split(" ")[1];
+                String rr = new BufferedReader(new InputStreamReader(connection.getInputStream())).lines().collect(Collectors.toList()).get(1).split(" ")[1];
                 if (!currentVersion.equals(rr)) {
                     p.sendMessage(prefix + pluginName + " : 최신 버전이 존재합니다! " + rr);
                     p.sendMessage(prefix + pluginName + " : 이 플러그인의 버전은 " + currentVersion + " 입니다. 업데이트를 해주시기 바랍니다.");
