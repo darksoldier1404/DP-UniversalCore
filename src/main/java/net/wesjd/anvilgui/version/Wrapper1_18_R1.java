@@ -23,7 +23,7 @@ import org.bukkit.inventory.Inventory;
 @SuppressWarnings("all")
 public class Wrapper1_18_R1 implements VersionWrapper {
 
-    private final boolean IS_ONE_EIGHTEEN = Bukkit.getBukkitVersion().contains("1.18");
+    private final boolean isMatchVersion = Bukkit.getBukkitVersion().contains("1.18");
 
     private int getRealNextContainerId(Player player) {
         return toNMS(player).nextContainerCounter();
@@ -34,7 +34,7 @@ public class Wrapper1_18_R1 implements VersionWrapper {
      */
     @Override
     public int getNextContainerId(Player player, Object container) {
-        if (IS_ONE_EIGHTEEN){
+        if (isMatchVersion){
             return ((AnvilContainer1_18_R1) container).getContainerId();
         }
         return ((AnvilContainer) container).getContainerId();
@@ -109,7 +109,7 @@ public class Wrapper1_18_R1 implements VersionWrapper {
      */
     @Override
     public Object newContainerAnvil(Player player, String guiTitle) {
-        if (IS_ONE_EIGHTEEN){
+        if (isMatchVersion){
             return new AnvilContainer1_18_R1(player,getRealNextContainerId(player),guiTitle);
         }
         return new AnvilContainer(player, guiTitle);

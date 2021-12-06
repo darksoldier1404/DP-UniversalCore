@@ -8,7 +8,7 @@ java {
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    options.javaModuleVersion = '16'
+    sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
 build {
@@ -17,7 +17,7 @@ build {
 }
 
 group 'github.com/darksoldier1404'
-version = '1.0.3.124'
+version = '1.0.3.125'
 configurations {
     jar.archiveName = 'DP-UniversalCore-_' + name + '-' + version + '.jar'
 }

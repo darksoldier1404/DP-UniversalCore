@@ -4,12 +4,13 @@ plugins {
     id 'java'
 }
 group 'github.com/darksoldier1404'
-version = '1.0.3.124'
+version = '1.0.3.125'
 
 
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+    sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
 
