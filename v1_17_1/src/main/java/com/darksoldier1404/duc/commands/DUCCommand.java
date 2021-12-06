@@ -23,7 +23,8 @@ public class DUCCommand implements CommandExecutor {
             return false;
         }
         if (args[0].equalsIgnoreCase("uc")) {
-            if (sender instanceof Player p) {
+            if (sender instanceof Player ) {
+                Player p = (Player) sender;
                 p.sendMessage(plugin.prefix + "설치된 모든 플러그인 업데이트 확인...");
                 plugin.enabledPlugins.values().forEach(o -> UpdateChecker.check(o, p));
             } else {
