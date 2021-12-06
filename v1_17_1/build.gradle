@@ -4,7 +4,7 @@ plugins {
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_1.8
+    sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
 build {
