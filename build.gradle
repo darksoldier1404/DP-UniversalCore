@@ -4,7 +4,7 @@ plugins {
     id 'java'
 }
 group 'github.com/darksoldier1404'
-version = '1.0.3.125'
+version = '1.0.3.126'
 
 
 compileJava.options.encoding = 'UTF-8'
@@ -100,7 +100,7 @@ dependencies {
     compileOnly 'org.spigotmc:spigot:1.18-R0.1-SNAPSHOT'
     compileOnly 'net.essentialsx:EssentialsX:2.19.0'
     compileOnly "org.bstats:bstats-bukkit:2.2.1"
-    compileOnly 'com.darksoldier1404.dvs:DP-VirtualStorage:1.0.0.28'
+    compileOnly 'com.darksoldier1404.dvs:DP-VirtualStorage:1.0.0.32'
     compileOnly 'me.clip:placeholderapi:2.10.10'
 }
 test {
