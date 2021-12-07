@@ -4,16 +4,16 @@ plugins {
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_16
+    sourceCompatibility = JavaVersion.VERSION_1_8
 }
 
 build {
-    sourceCompatibility = 16
-    targetCompatibility = 16
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
 }
 
 group 'github.com/darksoldier1404'
-version = '1.0.3.127'
+version = '1.0.3.128'
 configurations {
     jar.archiveName = 'DP-UniversalCore-_' + name + '-' + version + '.jar'
 }

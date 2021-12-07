@@ -417,7 +417,6 @@ public class NBT {
      */
     public static ItemStack setItemStackTag(ItemStack objitem, String key, ItemStack value) {
         String sitem = ItemStackSerializer.serialize(value);
-        // split sitem by 255 char
         String[] sitems = sitem.split("(?<=\\G.{288})");
 
         for (int i = 0; i < sitems.length; i++) {
