@@ -44,7 +44,7 @@ public class UniversalCore extends JavaPlugin {
         PluginUtil.loadALLPlugins();
         Bukkit.getScheduler().runTaskLater(plugin, () -> enabledPlugins.keySet().forEach(SchedulerUtils::initUpdateChecker), 1200L);
         getCommand("duc").setExecutor(new DUCCommand());
-        if(papi != null) {
+        if (papi != null) {
             new PAPI_DUC().register();
         }
     }
