@@ -2,12 +2,12 @@ package com.darksoldier1404.duc.utils;
 
 import com.darksoldier1404.duc.UniversalCore;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
@@ -16,11 +16,6 @@ import java.util.logging.Logger;
 public class ConfigUtils {
     private static final UniversalCore core = UniversalCore.getInstance();
     private static final Logger log = core.log;
-
-    public static void test() {
-        Player p = null;
-
-    }
 
     @NotNull
     public static YamlConfiguration loadDefaultPluginConfig(@NotNull JavaPlugin plugin) {
@@ -162,22 +157,40 @@ public class ConfigUtils {
     }
 
     @NotNull
-    public static YamlConfiguration initUserData(@NotNull JavaPlugin plugin, @NotNull String fileName, @NotNull String path, YamlConfiguration defaultData) {
+    public static YamlConfiguration initUserData(@NotNull JavaPlugin plugin, @NotNull String fileName, @NotNull String path) {
         File file = new File(plugin.getDataFolder() + "/" + path, fileName + ".yml");
         if (!file.exists()) {
-            return defaultData;
+            try {
+                file.createNewFile();
+                log.info("[DUC] " + plugin.getName() + " " + fileName + " 파일 생성 성공.");
+                return YamlConfiguration.loadConfiguration(file);
+            } catch (IOException e) {
+                log.warning("[DUC] " + plugin.getName() + " " + fileName + " 파일 생성 실패.");
+            }
         } else {
             return YamlConfiguration.loadConfiguration(file);
         }
+        log.warning("[DUC] " + plugin.getName() + " " + fileName + " 파일 생성 실패.");
+        log.warning("[DUC] " + plugin.getName() + " 빈 파일을 반환합니다.");
+        return new YamlConfiguration();
     }
 
     @NotNull
-    public static YamlConfiguration initUserData(@NotNull JavaPlugin plugin, @NotNull String fileName, YamlConfiguration defaultData) {
+    public static YamlConfiguration initUserData(@NotNull JavaPlugin plugin, @NotNull String fileName) {
         File file = new File(plugin.getDataFolder() + "/data", fileName + ".yml");
         if (!file.exists()) {
-            return defaultData;
+            try {
+                file.createNewFile();
+                log.info("[DUC] " + plugin.getName() + " " + fileName + " 파일 생성 성공.");
+                return YamlConfiguration.loadConfiguration(file);
+            } catch (IOException e) {
+                log.warning("[DUC] " + plugin.getName() + " " + fileName + " 파일 생성 실패.");
+            }
         } else {
             return YamlConfiguration.loadConfiguration(file);
         }
+        log.warning("[DUC] " + plugin.getName() + " " + fileName + " 파일 생성 실패.");
+        log.warning("[DUC] " + plugin.getName() + " 빈 파일을 반환합니다.");
+        return new YamlConfiguration();
     }
 }
