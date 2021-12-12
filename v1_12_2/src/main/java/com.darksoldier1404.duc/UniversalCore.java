@@ -2,6 +2,7 @@ package com.darksoldier1404.duc;
 
 import com.darksoldier1404.duc.commands.DUCCommand;
 import com.darksoldier1404.duc.enums.PluginName;
+import com.darksoldier1404.duc.papi.PAPI_DUC;
 import com.darksoldier1404.duc.utils.ConfigUtils;
 import com.darksoldier1404.duc.utils.PluginUtil;
 import com.darksoldier1404.duc.utils.SchedulerUtils;
@@ -15,6 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+@SuppressWarnings("all")
 public class UniversalCore extends JavaPlugin {
     private static UniversalCore plugin;
     public YamlConfiguration config;
@@ -38,10 +40,12 @@ public class UniversalCore extends JavaPlugin {
         log = getLogger();
         log.info(prefix + "DP-UniversalCore 플러그인 활성화.");
         config = ConfigUtils.loadDefaultPluginConfig(plugin);
-        enabledPlugins.put(PluginName.UniversalCore, plugin);
         PluginUtil.loadALLPlugins();
         Bukkit.getScheduler().runTaskLater(plugin, () -> enabledPlugins.keySet().forEach(SchedulerUtils::initUpdateChecker), 1200L);
         getCommand("duc").setExecutor(new DUCCommand());
+        if(papi != null) {
+            new PAPI_DUC().register();
+        }
     }
 
     @Override
