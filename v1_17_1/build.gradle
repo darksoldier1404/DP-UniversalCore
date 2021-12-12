@@ -13,7 +13,7 @@ build {
 }
 
 group 'github.com/darksoldier1404'
-version = '1.0.4.130'
+version = '1.0.4.131'
 configurations {
     jar.archiveName = 'DP-UniversalCore-_' + name + '-' + version + '.jar'
 }
