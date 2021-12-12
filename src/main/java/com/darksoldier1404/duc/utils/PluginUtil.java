@@ -20,9 +20,6 @@ public class PluginUtil {
     private static final Logger log = plugin.getLogger();
 
     public static void loadALLPlugins() {
-        if(isMetricsEnabled(PluginName.UniversalCore)) {
-            new Metrics(plugin, 13426);
-        }
         Plugin pl;
         pl = pm.getPlugin("Essentials");
         if (pl != null) {
@@ -32,52 +29,24 @@ public class PluginUtil {
         if (pl != null) {
             plugin.papi = (PlaceholderAPIPlugin) pl;
         }
-        pl = pm.getPlugin("DP-LegendaryCash");
-        if (pl != null) {
-            plugin.getEnabledPlugins().put(PluginName.LegendaryCash, (JavaPlugin) pl);
-            log.info(prefix + " DP-LegendaryCash 플러그인 활성화.");
-            if(isMetricsEnabled(PluginName.LegendaryCash)) {
-                new Metrics((JavaPlugin) pl, 13387);
-            }
-        }
-        pl = pm.getPlugin("DP-VirtualStorage");
-        if (pl != null) {
-            VirtualStorage vs = (VirtualStorage) pl;
-            if(plugin.ess == null) {
-                log.warning(prefix + " 에센셜 플러그인이 감지되지 않음.");
-                log.warning(prefix + " Essentials 플러그인이 설치되어 있지 않아 DP-VirtualStorage 플러그인의 창고 구매 기능을 비활성화 합니다.");
-                vs.ess = null;
-            }else{
-                vs.ess = plugin.ess;
-                plugin.getEnabledPlugins().put(PluginName.VirtualStorage, (JavaPlugin) pl);
-                log.info(prefix + " DP-VirtualStorage 플러그인 활성화.");
-                if(isMetricsEnabled(PluginName.VirtualStorage)) {
-                    new Metrics((JavaPlugin) pl, 13386);
+        for(PluginName name : PluginName.values()) {
+            pl = pm.getPlugin(name.getName());
+            if (pl != null) {
+                if(name.equals(PluginName.VirtualStorage)) {
+                    VirtualStorage vs = (VirtualStorage) pl;
+                    if (plugin.ess == null) {
+                        log.warning(prefix + " 에센셜 플러그인이 감지되지 않음.");
+                        log.warning(prefix + " Essentials 플러그인이 설치되어 있지 않아 DP-VirtualStorage 플러그인의 창고 구매 기능을 비활성화 합니다.");
+                        vs.ess = null;
+                    } else {
+                        vs.ess = plugin.ess;
+                    }
                 }
-            }
-        }
-        pl = pm.getPlugin("DP-SimplePrefix");
-        if (pl != null) {
-            plugin.getEnabledPlugins().put(PluginName.SimplePrefix, (JavaPlugin) pl);
-            log.info(prefix + " DP-SimplePrefix 플러그인 활성화.");
-            if(isMetricsEnabled(PluginName.SimplePrefix)) {
-                new Metrics((JavaPlugin) pl, 13460);
-            }
-        }
-        pl = pm.getPlugin("DP-ItemEditor");
-        if (pl != null) {
-            plugin.getEnabledPlugins().put(PluginName.ItemEditor, (JavaPlugin) pl);
-            log.info(prefix + " DP-ItemEditor 플러그인 활성화.");
-            if(isMetricsEnabled(PluginName.ItemEditor)) {
-                new Metrics((JavaPlugin) pl, 13462);
-            }
-        }
-        pl = pm.getPlugin("DP-SimpleMenu");
-        if (pl != null) {
-            plugin.getEnabledPlugins().put(PluginName.SimpleMenu, (JavaPlugin) pl);
-            log.info(prefix + " DP-SimpleMenu 플러그인 활성화.");
-            if(isMetricsEnabled(PluginName.SimpleMenu)) {
-                new Metrics((JavaPlugin) pl, 13499);
+                plugin.getEnabledPlugins().put(name, (JavaPlugin) pl);
+                log.info(prefix + name.getName() + " 플러그인 활성화.");
+                if(isMetricsEnabled(name)) {
+                    new Metrics((JavaPlugin) pl, name.getPluginID());
+                }
             }
         }
     }
@@ -104,14 +73,14 @@ public class PluginUtil {
     }
 
     public static boolean isUpdateCheckEnabled(PluginName name) {
-        return plugin.config.getBoolean("Settings."+name.getName()+".update-check");
+        return plugin.config.getStringList("Settings.update-check-excluded") == null ? true : !plugin.config.getStringList("Settings.update-check-excluded").contains(name.getName());
     }
 
     public static long getUpdateCheckInterval(PluginName name) {
-        return plugin.config.getLong("Settings."+name.getName()+".update-check-interval");
+        return plugin.config.getLong("Settings.update-check-interval");
     }
 
     public static boolean isMetricsEnabled(PluginName name) {
-        return plugin.config.getBoolean("Settings."+name.getName()+".use-metrics");
+        return plugin.config.getStringList("Settings.metrics-excluded") == null ? true : !plugin.config.getStringList("Settings.metrics-excluded").contains(name.getName());
     }
 }
