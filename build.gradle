@@ -2,6 +2,7 @@ import static sun.security.util.Debug.println
 
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 group 'github.com/darksoldier1404'
 version = '1.0.4.136'
@@ -58,6 +59,15 @@ task DS_BUILD {
             })
         })
         buildFile.setText(updatedVersion)
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.darksoldier1404.duc'
+            artifactId = 'DP-UniversalCore'
+        }
     }
 }
 
