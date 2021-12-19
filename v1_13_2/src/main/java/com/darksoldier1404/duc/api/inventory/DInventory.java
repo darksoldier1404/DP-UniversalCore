@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 public class DInventory extends CraftInventory {
     private final Inventory inv;
     private boolean usePage;
-    private int pages;
+    private int pages = 0;
     private int currentPage;
     private ItemStack[] pageTools = new ItemStack[8];
     private ItemStack[][] pageItems = new ItemStack[][]{};
@@ -20,7 +20,6 @@ public class DInventory extends CraftInventory {
         super(new CraftInventoryCustom(holder, inv.getSize()).getInventory());
         this.inv = inv;
         usePage = false;
-        pages = 1;
         currentPage = 0;
 
     }
@@ -29,7 +28,6 @@ public class DInventory extends CraftInventory {
         super(new CraftInventoryCustom(holder, inv.getSize()).getInventory());
         this.inv = inv;
         this.usePage = usePage;
-        pages = 1;
         currentPage = 0;
     }
 
@@ -62,7 +60,6 @@ public class DInventory extends CraftInventory {
     }
 
     public boolean setPages(int pages) {
-        if (pages < 0 || pageItems.length > pages) return false;
         this.pages = pages;
         return true;
     }
@@ -97,6 +94,11 @@ public class DInventory extends CraftInventory {
         if (page < 0 || page > pages) return false;
         pageItems[page] = items;
         return true;
+    }
+    // add pageContent
+    public void addPageContent(ItemStack[] items) {
+        pages++;
+        pageItems[pages] = items;
     }
 
     public void update() {
