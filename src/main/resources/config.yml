@@ -19,3 +19,5 @@ Settings:
 
 #  use-metrics-excluded:
 #    - DP-VirtualStorage
+
+  default-lang: ko_KR
