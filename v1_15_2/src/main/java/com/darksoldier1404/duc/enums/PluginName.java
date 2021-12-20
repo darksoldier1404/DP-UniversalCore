@@ -9,6 +9,7 @@ public enum PluginName {
     ItemEditor("DP-ItemEditor", 13462),
     SimpleMenu("DP-SimpleMenu", 13499),
     SimpleAnnouncement("DP-SimpleAnnouncement", 13561),
+    EquipmentAttribution("DP-EquipmentAttribution", 13663),
     ;
 
     private final String name;
