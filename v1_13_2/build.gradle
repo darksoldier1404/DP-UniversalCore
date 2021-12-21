@@ -1,7 +1,17 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.darksoldier1404.duc'
+            artifactId = 'DP-UniversalCore'
+            version = '1.13.2-SNAPSHOT'
+        }
+    }
+}
 java {
     version '1.8'
 }
@@ -18,7 +28,7 @@ build {
 
 
 group 'github.com/darksoldier1404'
-version = '1.0.4.136'
+version = '1.0.5.137'
 
 configurations {
     jar.archiveName = 'DP-UniversalCore-_' + name + '-' + version + '.jar'
