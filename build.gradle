@@ -7,9 +7,9 @@ plugins {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            groupId = 'com.darksoldier1404.duc' as Publication
-            artifactId = 'DP-UniversalCore' as Publication
-            version = '1.18.1-SNAPSHOT' as Publication
+            groupId = 'com.darksoldier1404.duc'
+            artifactId = 'DP-UniversalCore'
+            version = '1.18.1-SNAPSHOT'
         }
     }
 }
