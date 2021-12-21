@@ -10,6 +10,11 @@ publishing {
             groupId = 'com.darksoldier1404.duc'
             artifactId = 'DP-UniversalCore'
             version = '1.18.1-SNAPSHOT'
+            pom {
+                groupId = 'com.darksoldier1404.duc'
+                artifactId = 'DP-UniversalCore'
+                version = '1.18.1-SNAPSHOT'
+            }
         }
     }
 }
