@@ -28,7 +28,7 @@ task deleteMyFile(type: Delete) {
     delete "C:\\Minecraft Servers\\1.18 Play Ground\\plugins\\DP-UniversalCore-" + version + ".jar"
 }
 configurations {
-    jar.archiveName = 'DP-UniversalCore-_v1_18_1-' + version + '.jar'
+    jar.archiveName = 'DP-UniversalCore-_v1_18_1-SNAPSHOT.jar'
 }
 task DS_BUILD {
     doFirst {
