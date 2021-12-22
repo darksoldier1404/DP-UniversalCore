@@ -454,7 +454,7 @@ public class NBT {
      */
     public static ItemStack setInventoryTag(ItemStack objitem, Inventory inv, String key) {
         for (int i = 0; i < inv.getSize(); i++) {
-            objitem = NBT.setItemStackTag(objitem, "inv_" + key + "_" + i, inv.getItem(i));
+            objitem = NBT.setItemStackTag(objitem, "inv_" + key + "_" + i+"_item", inv.getItem(i));
         }
         objitem = NBT.setIntTag(objitem, "inv_" + key + "_size", inv.getSize());
         return objitem;
@@ -469,7 +469,7 @@ public class NBT {
     public static Inventory getInventoryTag(ItemStack objitem, String key) {
         Inventory inv = Bukkit.createInventory(null, NBT.getIntegerTag(objitem, "inv_" + key + "_size"));
         for (int i = 0; i < inv.getSize(); i++) {
-            inv.setItem(i, NBT.getItemStackTag(objitem, "inv_" + key + "_" + i));
+            inv.setItem(i, NBT.getItemStackTag(objitem, "inv_" + key + "_" + i+"_item"));
         }
         return inv;
     }
