@@ -11,6 +11,40 @@ public class TargetAPI {
     private static final UniversalCore plugin = UniversalCore.getInstance();
 
     @Nullable
+    public static Entity getNearestTargetFromList(Entity center, double maxDistance) {
+        if (center == null) return null;
+        List<Entity> targets = center.getNearbyEntities(maxDistance, maxDistance, maxDistance);
+        if (targets.isEmpty()) return null;
+        Entity nearestTarget = null;
+        double nearestDistance = maxDistance;
+        for (Entity target : targets) {
+            double distance = center.getLocation().distance(target.getLocation());
+            if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestTarget = target;
+            }
+        }
+        return nearestTarget;
+    }
+
+    @Nullable
+    public static Entity getNearestTargetFromList(Entity center, double maxX, double maxY, double maxZ, double maxDistance) {
+        if (center == null) return null;
+        List<Entity> targets = center.getNearbyEntities(maxX, maxY, maxZ);
+        if (targets.isEmpty()) return null;
+        Entity nearestTarget = null;
+        double nearestDistance = maxDistance;
+        for (Entity target : targets) {
+            double distance = center.getLocation().distance(target.getLocation());
+            if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestTarget = target;
+            }
+        }
+        return nearestTarget;
+    }
+
+    @Nullable
     public static Entity getNearestTargetFromList(Entity center, List<Entity> targets, double maxDistance) {
         if (center == null) return null;
         if (targets.isEmpty()) return null;
