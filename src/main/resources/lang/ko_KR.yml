@@ -1,9 +1,2 @@
 Lang: ko_KR
 
-load_default_config_file_success:
-  en: "Default config file loaded."
-  ko: "기본 설정 파일을 로드했습니다."
-
-load_default_config_file_fail:
-  en: "Default config file load failed."
-  ko: "기본 설정 파일 로드에 실패했습니다."
