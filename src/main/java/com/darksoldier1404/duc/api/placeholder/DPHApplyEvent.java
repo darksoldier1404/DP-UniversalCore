@@ -12,13 +12,13 @@ public class DPHApplyEvent extends Event implements Cancellable {
     private static final HandlerList HANDLERS = new HandlerList();
     private final CommandSender requester;
     private final String key;
-    private final String value;
+    private final Object value;
     private final String result;
     private final boolean isWithColor;
     private final boolean isGlobalValue;
     private boolean cancelled;
 
-    public DPHApplyEvent(@NotNull CommandSender requester, @NotNull String key, @NotNull String value, @NotNull String result, boolean isWithColor, boolean isGlobalValue) {
+    public DPHApplyEvent(@NotNull CommandSender requester, @NotNull String key, @NotNull Object value, @NotNull String result, boolean isWithColor, boolean isGlobalValue) {
         this.requester = requester;
         this.key = key;
         this.value = value;
@@ -38,7 +38,7 @@ public class DPHApplyEvent extends Event implements Cancellable {
     }
 
     @NotNull
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 
