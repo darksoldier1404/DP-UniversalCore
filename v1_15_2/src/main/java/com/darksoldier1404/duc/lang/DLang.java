@@ -20,8 +20,11 @@ public class DLang {
     @Nullable
     public String get(String key) {
         String s = currentLang.getString(key);
-        String[] args = currentLang.getString(key + ".args").split("\\|");
-        if(s != null) {
+        String[] args = new String[0];
+        if (currentLang.getString(key + ".args") != null) {
+            args = currentLang.getString(key + ".args").split("\\|");
+        }
+        if (s != null) {
             for (int i = 0; i < args.length; i++) {
                 s = s.replace("{" + i + "}", args[i]);
             }
