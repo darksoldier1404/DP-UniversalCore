@@ -97,9 +97,6 @@ repositories {
     maven {
         url 'https://repo.spring.io/plugins-release/'
     }
-    maven {
-        url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
-    }
 }
 
 dependencies {
@@ -110,7 +107,6 @@ dependencies {
     compileOnly 'net.essentialsx:EssentialsX:2.19.0'
     compileOnly "org.bstats:bstats-bukkit:2.2.1"
     compileOnly 'com.darksoldier1404.dvs:DP-VirtualStorage:1.0.0.41'
-    compileOnly 'me.clip:placeholderapi:2.10.10'
 }
 test {
     useJUnitPlatform()
