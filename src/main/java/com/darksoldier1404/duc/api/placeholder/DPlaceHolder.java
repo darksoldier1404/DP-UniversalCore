@@ -9,7 +9,7 @@ import org.bukkit.scheduler.BukkitTask;
 public class DPlaceHolder {
     private final CommandSender requester;
     private String key;
-    private String value;
+    private Object value;
     private boolean useTask = false;
     private BukkitTask task;
     private long interval;
@@ -51,8 +51,12 @@ public class DPlaceHolder {
         return key;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
+    }
+
+    public Object getValueAsString() {
+        return value.toString();
     }
 
     public boolean isUseTask() {
@@ -99,14 +103,14 @@ public class DPlaceHolder {
         this.isGlobalValue = isGlobalValue;
     }
 
-    public String apply() {
-        String r = key.replace("{" + key + "}", value);
+    public String apply(String s) {
+        String r = s.replace("{" + key + "}", value.toString());
         Bukkit.getPluginManager().callEvent(new DPHApplyEvent(requester, key, value, r, false, isGlobalValue));
         return r;
     }
 
-    public String applyWithColor() {
-        String r = ChatColor.translateAlternateColorCodes('&', key.replace("{" + key + "}", value));
+    public String applyWithColor(String s) {
+        String r = ChatColor.translateAlternateColorCodes('&', s.replace("{" + key + "}", value.toString()));
         Bukkit.getPluginManager().callEvent(new DPHApplyEvent(requester, key, value, r, true, isGlobalValue));
         return r;
     }
