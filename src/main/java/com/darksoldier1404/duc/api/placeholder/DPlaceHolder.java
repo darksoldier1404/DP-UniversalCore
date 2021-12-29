@@ -15,27 +15,27 @@ public class DPlaceHolder {
     private long interval;
     private boolean isGlobalValue = false;
 
-    public DPlaceHolder(CommandSender requester, String key, String value) {
+    public DPlaceHolder(CommandSender requester, String key, Object value) {
         this.requester = requester;
         this.key = key;
         this.value = value;
     }
 
-    public DPlaceHolder(CommandSender requester, String key, String value, boolean isGlobalValue) {
+    public DPlaceHolder(CommandSender requester, String key, Object value, boolean isGlobalValue) {
         this.requester = requester;
         this.key = key;
         this.value = value;
         this.isGlobalValue = isGlobalValue;
     }
 
-    public DPlaceHolder(CommandSender requester, String key, String value, long interval) {
+    public DPlaceHolder(CommandSender requester, String key, Object value, long interval) {
         this.requester = requester;
         this.key = key;
         this.value = value;
         this.useTask = true;
     }
 
-    public DPlaceHolder(CommandSender requester, String key, String value, long interval, boolean isGlobalValue) {
+    public DPlaceHolder(CommandSender requester, String key, Object value, long interval, boolean isGlobalValue) {
         this.requester = requester;
         this.key = key;
         this.value = value;
