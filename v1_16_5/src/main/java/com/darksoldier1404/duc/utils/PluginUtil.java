@@ -4,7 +4,6 @@ import com.darksoldier1404.duc.UniversalCore;
 import com.darksoldier1404.duc.enums.PluginName;
 import com.darksoldier1404.dvs.VirtualStorage;
 import com.earth2me.essentials.Essentials;
-import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
@@ -24,10 +23,6 @@ public class PluginUtil {
         pl = pm.getPlugin("Essentials");
         if (pl != null) {
             plugin.ess = (Essentials) pl;
-        }
-        pl = pm.getPlugin("PlaceholderAPI");
-        if (pl != null) {
-            plugin.papi = (PlaceholderAPIPlugin) pl;
         }
         for(PluginName name : PluginName.values()) {
             pl = pm.getPlugin(name.getName());
