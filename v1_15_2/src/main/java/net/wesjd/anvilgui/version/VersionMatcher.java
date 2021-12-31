@@ -2,13 +2,13 @@ package net.wesjd.anvilgui.version;
 
 import org.bukkit.Bukkit;
 
-@SuppressWarnings("all")
 /**
  * Matches the server's NMS version to its {@link VersionWrapper}
  *
  * @author Wesley Smith
  * @since 1.2.1
  */
+@SuppressWarnings("all")
 public class VersionMatcher {
 
     /**
