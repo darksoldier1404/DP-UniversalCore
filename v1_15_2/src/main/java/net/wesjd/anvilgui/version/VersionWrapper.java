@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
  * @author Wesley Smith
  * @since 1.0
  */
+@SuppressWarnings("all")
 public interface VersionWrapper {
 
     /**

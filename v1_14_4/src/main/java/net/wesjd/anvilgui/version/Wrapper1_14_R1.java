@@ -1,6 +1,5 @@
 package net.wesjd.anvilgui.version;
 
-
 import net.minecraft.server.v1_14_R1.*;
 import net.wesjd.anvilgui.version.special.AnvilContainer1_14_4_R1;
 import org.bukkit.Bukkit;
@@ -10,9 +9,10 @@ import org.bukkit.craftbukkit.v1_14_R1.event.CraftEventFactory;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
+@SuppressWarnings("all")
 public class Wrapper1_14_R1 implements VersionWrapper {
 
-    private final boolean isMatchVersion = Bukkit.getBukkitVersion().contains("1.14.4");
+    private final boolean IS_ONE_FOURTEEN = Bukkit.getBukkitVersion().contains("1.14.4");
 
     private int getRealNextContainerId(Player player) {
         return toNMS(player).nextContainerCounter();
@@ -23,10 +23,11 @@ public class Wrapper1_14_R1 implements VersionWrapper {
      */
     @Override
     public int getNextContainerId(Player player, Object container) {
-        if (isMatchVersion){
+        if (IS_ONE_FOURTEEN) {
             return ((AnvilContainer1_14_4_R1) container).getContainerId();
+        } else {
+            return ((AnvilContainer) container).getContainerId();
         }
-        return ((AnvilContainer) container).getContainerId();
     }
 
     /**
@@ -42,7 +43,7 @@ public class Wrapper1_14_R1 implements VersionWrapper {
      */
     @Override
     public void sendPacketOpenWindow(Player player, int containerId, String guiTitle) {
-        toNMS(player).playerConnection.sendPacket(new PacketPlayOutOpenWindow(containerId, Containers.ANVIL, new ChatComponentText(guiTitle)));
+        toNMS(player).playerConnection.sendPacket(new PacketPlayOutOpenWindow(containerId, Containers.ANVIL, new ChatMessage(guiTitle)));
     }
 
     /**
@@ -58,7 +59,7 @@ public class Wrapper1_14_R1 implements VersionWrapper {
      */
     @Override
     public void setActiveContainerDefault(Player player) {
-        (toNMS(player)).activeContainer = (toNMS(player)).activeContainer;
+        toNMS(player).activeContainer = toNMS(player).defaultContainer;
     }
 
     /**
@@ -66,7 +67,7 @@ public class Wrapper1_14_R1 implements VersionWrapper {
      */
     @Override
     public void setActiveContainer(Player player, Object container) {
-        (toNMS(player)).activeContainer = (Container)container;
+        toNMS(player).activeContainer = (Container) container;
     }
 
     /**
@@ -82,7 +83,7 @@ public class Wrapper1_14_R1 implements VersionWrapper {
      */
     @Override
     public void addActiveContainerSlotListener(Object container, Player player) {
-        toNMS(player).updateInventory((Container) container);
+        ((Container) container).addSlotListener(toNMS(player));
     }
 
     /**
@@ -98,10 +99,11 @@ public class Wrapper1_14_R1 implements VersionWrapper {
      */
     @Override
     public Object newContainerAnvil(Player player, String guiTitle) {
-        if (isMatchVersion){
-            return new AnvilContainer1_14_4_R1(player,getRealNextContainerId(player),guiTitle);
+        if (IS_ONE_FOURTEEN) {
+            return new AnvilContainer1_14_4_R1(player, getRealNextContainerId(player), guiTitle);
+        } else {
+            return new AnvilContainer(player, guiTitle);
         }
-        return new AnvilContainer(player, guiTitle);
     }
 
     /**
@@ -118,19 +120,32 @@ public class Wrapper1_14_R1 implements VersionWrapper {
      * Modifications to ContainerAnvil that makes it so you don't have to have xp to use this anvil
      */
     private class AnvilContainer extends ContainerAnvil {
+
         public AnvilContainer(Player player, String guiTitle) {
-            super(Wrapper1_14_R1.this.getRealNextContainerId(player), ((CraftPlayer)player).getHandle().inventory,
-                    ContainerAccess.at(((CraftWorld)player.getWorld()).getHandle(), new BlockPosition(0, 0, 0)));
+            super(getRealNextContainerId(player), ((CraftPlayer) player).getHandle().inventory,
+                    ContainerAccess.at(((CraftWorld) player.getWorld()).getHandle(), new BlockPosition(0, 0, 0)));
             this.checkReachable = false;
             setTitle(new ChatMessage(guiTitle));
         }
 
         @Override
-        public void b(EntityHuman player) {}
+        public void e() {
+            super.e();
+            this.levelCost.set(0);
+        }
 
+        @Override
+        public void b(EntityHuman entityhuman) {
+        }
+
+        @Override
+        protected void a(EntityHuman entityhuman, World world, IInventory iinventory) {
+        }
 
         public int getContainerId() {
-            return this.windowId;
+            return windowId;
         }
+
     }
+
 }

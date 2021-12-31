@@ -1,6 +1,5 @@
 package net.wesjd.anvilgui.version;
 
-import net.wesjd.anvilgui.version.special.AnvilContainer1_18_R1;
 import net.minecraft.core.BlockPosition;
 import net.minecraft.network.chat.ChatComponentText;
 import net.minecraft.network.chat.ChatMessage;
@@ -13,7 +12,6 @@ import net.minecraft.world.inventory.Container;
 import net.minecraft.world.inventory.ContainerAccess;
 import net.minecraft.world.inventory.ContainerAnvil;
 import net.minecraft.world.inventory.Containers;
-import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_18_R1.event.CraftEventFactory;
@@ -21,98 +19,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 @SuppressWarnings("all")
-public class Wrapper1_18_R1 implements VersionWrapper {
-
-    private final boolean isMatchVersion = Bukkit.getBukkitVersion().contains("1.18");
-
+public final class Wrapper1_18_R1 implements VersionWrapper {
     private int getRealNextContainerId(Player player) {
         return toNMS(player).nextContainerCounter();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public int getNextContainerId(Player player, Object container) {
-        if (isMatchVersion){
-            return ((AnvilContainer1_18_R1) container).getContainerId();
-        }
-        return ((AnvilContainer) container).getContainerId();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void handleInventoryCloseEvent(Player player) {
-        CraftEventFactory.handleInventoryCloseEvent(toNMS(player));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void sendPacketOpenWindow(Player player, int containerId, String guiTitle) {
-        toNMS(player).b.a(new PacketPlayOutOpenWindow(containerId, Containers.h, new ChatComponentText(guiTitle)));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void sendPacketCloseWindow(Player player, int containerId) {
-        toNMS(player).b.a(new PacketPlayOutCloseWindow(containerId));
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setActiveContainerDefault(Player player) {
-        (toNMS(player)).bW = (toNMS(player)).bW;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setActiveContainer(Player player, Object container) {
-        (toNMS(player)).bW = (Container)container;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setActiveContainerId(Object container, int containerId) {
-        //noop
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addActiveContainerSlotListener(Object container, Player player) {
-        toNMS(player).a((Container) container);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Inventory toBukkitInventory(Object container) {
-        return ((Container) container).getBukkitView().getTopInventory();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Object newContainerAnvil(Player player, String guiTitle) {
-        if (isMatchVersion){
-            return new AnvilContainer1_18_R1(player,getRealNextContainerId(player),guiTitle);
-        }
-        return new AnvilContainer(player, guiTitle);
     }
 
     /**
@@ -125,20 +34,67 @@ public class Wrapper1_18_R1 implements VersionWrapper {
         return ((CraftPlayer) player).getHandle();
     }
 
-    /**
-     * Modifications to ContainerAnvil that makes it so you don't have to have xp to use this anvil
-     */
-    private class AnvilContainer extends ContainerAnvil {
-        public AnvilContainer(Player player, String guiTitle) {
-            super(Wrapper1_18_R1.this.getRealNextContainerId(player), ((CraftPlayer)player).getHandle().fq(),
-                    ContainerAccess.a(((CraftWorld)player.getWorld()).getHandle(), new BlockPosition(0, 0, 0)));
+    @Override
+    public int getNextContainerId(Player player, Object container) {
+        return ((AnvilContainer) container).getContainerId();
+    }
+
+    @Override
+    public void handleInventoryCloseEvent(Player player) {
+        CraftEventFactory.handleInventoryCloseEvent(toNMS(player));
+    }
+
+    @Override
+    public void sendPacketOpenWindow(Player player, int containerId, String inventoryTitle) {
+        toNMS(player).b.a(new PacketPlayOutOpenWindow(containerId, Containers.h, new ChatComponentText(inventoryTitle)));
+    }
+
+    @Override
+    public void sendPacketCloseWindow(Player player, int containerId) {
+        toNMS(player).b.a(new PacketPlayOutCloseWindow(containerId));
+    }
+
+    @Override
+    public void setActiveContainerDefault(Player player) {
+        (toNMS(player)).bW = (toNMS(player)).bV;
+    }
+
+    @Override
+    public void setActiveContainer(Player player, Object container) {
+        (toNMS(player)).bW = (Container) container;
+    }
+
+    @Override
+    public void setActiveContainerId(Object container, int containerId) {
+
+    }
+
+    @Override
+    public void addActiveContainerSlotListener(Object container, Player player) {
+        toNMS(player).a((Container) container);
+    }
+
+    @Override
+    public Inventory toBukkitInventory(Object container) {
+        return ((Container) container).getBukkitView().getTopInventory();
+    }
+
+    @Override
+    public Object newContainerAnvil(Player player, String title) {
+        return new AnvilContainer(player, getRealNextContainerId(player), title);
+    }
+
+    private static class AnvilContainer extends ContainerAnvil {
+        public AnvilContainer(Player player, int containerId, String guiTitle) {
+            super(containerId, ((CraftPlayer) player).getHandle().fq(),
+                    ContainerAccess.a(((CraftWorld) player.getWorld()).getHandle(), new BlockPosition(0, 0, 0)));
             this.checkReachable = false;
             setTitle(new ChatMessage(guiTitle));
         }
 
         @Override
-        public void i() {
-            super.i();
+        public void l() {
+            super.l();
             this.w.a(0);
         }
 
