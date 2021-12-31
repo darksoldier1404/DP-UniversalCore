@@ -28,7 +28,7 @@ build {
 
 
 group 'github.com/darksoldier1404'
-version = '1.0.5.149'
+version = '1.0.6.150'
 
 configurations {
     jar.archiveName = 'DP-UniversalCore-_' + name + '-SNAPSHOT.jar'
