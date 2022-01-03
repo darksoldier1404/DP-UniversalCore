@@ -108,7 +108,7 @@ public class NBT {
     public static int getIntegerTag(ItemStack objitem, String key) {
         net.minecraft.server.v1_16_R3.ItemStack item = CraftItemStack.asNMSCopy(objitem);
         NBTTagCompound ntc = item.hasTag() ? item.getTag() : new NBTTagCompound();
-        ntc.setInt(key, Integer.parseInt(NBT.getStringTag(objitem, key)));
+        
         return ntc.getInt(key);
     }
 

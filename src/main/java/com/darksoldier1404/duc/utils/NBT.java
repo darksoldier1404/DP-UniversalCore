@@ -474,5 +474,4 @@ public class NBT {
         }
         return inv;
     }
-
 }

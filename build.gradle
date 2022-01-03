@@ -15,7 +15,7 @@ publishing {
     }
 }
 group 'github.com/darksoldier1404'
-version = '1.0.6.151'
+version = '1.0.6.152'
 
 
 compileJava.options.encoding = 'UTF-8'
@@ -80,12 +80,12 @@ repositories {
         url = uri("https://libraries.minecraft.net/")
     }
     maven {
-        name "essentialsx-releases"
-        url "https://repo.essentialsx.net/releases/"
-    }
-    maven {
         name = "Spigot"
         url "https://repo.dmulloy2.net/repository/public/"
+    }
+    maven {
+        name "essentialsx-releases"
+        url "https://repo.essentialsx.net/releases/"
     }
     maven {
         url "http://dpnw.site:8081/repository/maven-public/"
