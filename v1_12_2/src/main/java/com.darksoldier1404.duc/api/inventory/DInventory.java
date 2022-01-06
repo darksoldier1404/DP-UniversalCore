@@ -6,12 +6,14 @@ import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftInventoryCustom;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("unused")
 public class DInventory extends CraftInventory {
+    private final String handlerName;
     private Inventory inv;
     private boolean usePage;
     private int pages = 0;
@@ -19,16 +21,17 @@ public class DInventory extends CraftInventory {
     private ItemStack[] pageTools = new ItemStack[8];
     private Map<Integer, ItemStack[]> pageItems = new HashMap<>();
 
-    public DInventory(InventoryHolder holder, Inventory inv) {
+    public DInventory(InventoryHolder holder, Inventory inv, JavaPlugin plugin) {
         super(new CraftInventoryCustom(holder, inv.getSize()).getInventory());
         this.inv = inv;
         usePage = false;
         currentPage = 0;
-
+        handlerName = plugin.getName();
     }
 
-    public DInventory(InventoryHolder holder, Inventory inv, boolean usePage) {
+    public DInventory(InventoryHolder holder, Inventory inv, boolean usePage, JavaPlugin plugin) {
         super(new CraftInventoryCustom(holder, inv.getSize()).getInventory());
+        this.handlerName = plugin.getName();
         this.inv = inv;
         this.usePage = usePage;
         currentPage = 0;
@@ -66,25 +69,20 @@ public class DInventory extends CraftInventory {
         this.usePage = usePage;
     }
 
-    public boolean setPages(int pages) {
+    public void setPages(int pages) {
         this.pages = pages;
-        return true;
     }
 
     public void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
     }
 
-    public boolean setPageTools(ItemStack[] pageTools) {
-        if (pageTools.length != 8) return false;
+    public void setPageTools(ItemStack[] pageTools) {
         this.pageTools = pageTools;
-        return true;
     }
 
-    public boolean setPageTool(int index, ItemStack item) {
-        if (index < 0 || index > 8) return false;
+    public void setPageTool(int index, ItemStack item) {
         pageTools[index] = item;
-        return true;
     }
 
     public boolean setPageItems(Map<Integer, ItemStack[]> pageItems) {
