@@ -1,9 +1,8 @@
 package com.darksoldier1404.duc.api.inventory;
 
 
-import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftInventory;
 import org.bukkit.craftbukkit.v1_14_R1.inventory.CraftInventoryCustom;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,37 +11,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SuppressWarnings("unused")
-public class DInventory extends CraftInventory {
+public class DInventory extends CraftInventoryCustom {
     private final String handlerName;
-    private Inventory inv;
     private boolean usePage;
     private int pages = 0;
     private int currentPage;
     private ItemStack[] pageTools = new ItemStack[8];
     private Map<Integer, ItemStack[]> pageItems = new HashMap<>();
 
-    public DInventory(InventoryHolder holder, Inventory inv, JavaPlugin plugin) {
-        super(new CraftInventoryCustom(holder, inv.getSize()).getInventory());
-        this.inv = inv;
+    public DInventory(InventoryHolder holder, String title, JavaPlugin plugin) {
+        super(holder, InventoryType.CHEST, title);
         usePage = false;
         currentPage = 0;
         handlerName = plugin.getName();
     }
 
-    public DInventory(InventoryHolder holder, Inventory inv, boolean usePage, JavaPlugin plugin) {
-        super(new CraftInventoryCustom(holder, inv.getSize()).getInventory());
+    public DInventory(InventoryHolder holder, String title, boolean usePage, JavaPlugin plugin) {
+        super(holder, InventoryType.CHEST, title);
         this.handlerName = plugin.getName();
-        this.inv = inv;
         this.usePage = usePage;
         currentPage = 0;
-    }
-
-    public Inventory getInv() {
-        return inv;
-    }
-
-    public void setInv(Inventory inv) {
-        this.inv = inv;
     }
 
     public boolean isUsePage() {
@@ -108,13 +96,13 @@ public class DInventory extends CraftInventory {
     }
 
     public void update() {
-        inv.clear();
+        clear();
         for (int i = 0; i < pageItems.get(currentPage).length; i++) {
-            inv.setItem(i, pageItems.get(currentPage)[i]);
+            setItem(i, pageItems.get(currentPage)[i]);
         }
         int pt = 0;
         for (int i = 45; i < pageTools.length; i++) {
-            inv.setItem(i, pageTools[pt]);
+            setItem(i, pageTools[pt]);
             pt++;
         }
     }
