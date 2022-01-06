@@ -33,6 +33,10 @@ public class DInventory extends CraftInventoryCustom {
         currentPage = 0;
     }
 
+    public String getHandlerName() {
+        return handlerName;
+    }
+
     public boolean isUsePage() {
         return usePage;
     }
