@@ -33,8 +33,12 @@ public class DInventory extends CraftInventoryCustom {
         currentPage = 0;
     }
 
-    public String getHandlerName() {
+        public String getHandlerName() {
         return handlerName;
+    }
+    
+    public boolean isValidHandler(JavaPlugin plugin) {
+        return plugin.getName().equals(handlerName);
     }
 
     public boolean isUsePage() {
