@@ -2,7 +2,6 @@ package com.darksoldier1404.duc.api.inventory;
 
 
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftInventoryCustom;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,24 +18,24 @@ public class DInventory extends CraftInventoryCustom {
     private ItemStack[] pageTools = new ItemStack[8];
     private Map<Integer, ItemStack[]> pageItems = new HashMap<>();
 
-    public DInventory(InventoryHolder holder, String title, JavaPlugin plugin) {
-        super(holder, InventoryType.CHEST, title);
+    public DInventory(InventoryHolder holder, String title, int size, JavaPlugin plugin) {
+        super(holder, size, title);
         usePage = false;
         currentPage = 0;
         handlerName = plugin.getName();
     }
 
-    public DInventory(InventoryHolder holder, String title, boolean usePage, JavaPlugin plugin) {
-        super(holder, InventoryType.CHEST, title);
+    public DInventory(InventoryHolder holder, String title, int size, boolean usePage, JavaPlugin plugin) {
+        super(holder, size, title);
         this.handlerName = plugin.getName();
         this.usePage = usePage;
         currentPage = 0;
     }
 
-        public String getHandlerName() {
+    public String getHandlerName() {
         return handlerName;
     }
-    
+
     public boolean isValidHandler(JavaPlugin plugin) {
         return plugin.getName().equals(handlerName);
     }
@@ -97,6 +96,7 @@ public class DInventory extends CraftInventoryCustom {
         pageItems.put(page, items);
         return true;
     }
+
     // add pageContent
     public void addPageContent(ItemStack[] items) {
         pages++;
