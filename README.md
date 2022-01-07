@@ -14,19 +14,19 @@ http://jenkins.dpnw.site/job/DP-UniversalCore/
 repositories
 ```
     maven {
-        url "http://dpnw.site:8081/repository/maven-releases/"
+        url "http://dpnw.site:8081/repository/maven-public/"
         allowInsecureProtocol = true
     }
 ```
 dependencies
 ```
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.12.2'
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.13.2'
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.14.4'
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.15.2'
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.16.5'
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.17.1'
-compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.18'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.12.2-SNAPSHOT'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.13.2-SNAPSHOT'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.14.4-SNAPSHOT'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.15.2-SNAPSHOT'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.16.5-SNAPSHOT'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.17.1-SNAPSHOT'
+compileOnly 'com.darksoldier1404.duc:DP-UniversalCore:1.0.3.123:1.18.1-SNAPSHOT'
 ```
 
 [ Wiki ]
