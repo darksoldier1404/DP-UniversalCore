@@ -109,7 +109,7 @@ public class DInventory extends CraftInventoryCustom {
             setItem(i, pageItems.get(currentPage)[i]);
         }
         int pt = 0;
-        for (int i = 45; i < pageTools.length; i++) {
+        for (int i = getSize() - 9; i < getSize(); i++) {
             setItem(i, pageTools[pt]);
             pt++;
         }
