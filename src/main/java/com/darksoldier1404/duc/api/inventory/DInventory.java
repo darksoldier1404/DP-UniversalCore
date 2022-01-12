@@ -1,6 +1,7 @@
 package com.darksoldier1404.duc.api.inventory;
 
 
+import com.darksoldier1404.duc.utils.NBT;
 import org.bukkit.craftbukkit.v1_18_R1.inventory.CraftInventoryCustom;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
@@ -8,10 +9,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings("unused")
 public class DInventory extends CraftInventoryCustom {
     private final String handlerName;
+    private final UUID uuid;
     private boolean usePage;
     private int pages = 0;
     private int currentPage;
@@ -23,6 +26,7 @@ public class DInventory extends CraftInventoryCustom {
         usePage = false;
         currentPage = 0;
         handlerName = plugin.getName();
+        uuid = UUID.randomUUID();
     }
 
     public DInventory(InventoryHolder holder, String title, int size, boolean usePage, JavaPlugin plugin) {
@@ -30,6 +34,11 @@ public class DInventory extends CraftInventoryCustom {
         this.handlerName = plugin.getName();
         this.usePage = usePage;
         currentPage = 0;
+        uuid = UUID.randomUUID();
+    }
+
+    public UUID getUniqueId() {
+        return uuid;
     }
 
     public String getHandlerName() {
@@ -110,7 +119,7 @@ public class DInventory extends CraftInventoryCustom {
         }
         int pt = 0;
         for (int i = getSize() - 9; i < getSize(); i++) {
-            setItem(i, pageTools[pt]);
+            setItem(i, NBT.setStringTag(pageTools[pt], "pageTools", "true"));
             pt++;
         }
     }
