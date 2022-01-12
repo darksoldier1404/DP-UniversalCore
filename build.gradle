@@ -15,13 +15,13 @@ publishing {
     }
 }
 group 'github.com/darksoldier1404'
-version = '1.0.6.163'
+version = '1.0.6.164'
 
 
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_16
+    sourceCompatibility = JavaVersion.VERSION_17
 }
 
 task deleteMyFile(type: Delete) {
@@ -71,10 +71,6 @@ java {
 }
 repositories {
     mavenCentral()
-    maven {
-        name = "Paper"
-        url "https://papermc.io/repo/repository/maven-public/"
-    }
     maven {
         name = "Mojang"
         url = uri("https://libraries.minecraft.net/")
