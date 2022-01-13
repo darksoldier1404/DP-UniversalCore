@@ -72,11 +72,9 @@ java {
 repositories {
     mavenCentral()
     maven {
-        name = "Mojang"
         url "https://libraries.minecraft.net/"
     }
     maven {
-        name = "Spigot"
         url "https://repo.dmulloy2.net/repository/public/"
     }
     maven {
