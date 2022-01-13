@@ -3,12 +3,22 @@ plugins {
     id 'maven-publish'
 }
 
+configurations {
+    jar.archiveName = 'DP-UniversalCore-_' + name + '-SNAPSHOT.jar'
+}
 publishing {
     publications {
         mavenJava(MavenPublication) {
             groupId = 'com.darksoldier1404.duc'
             artifactId = 'DP-UniversalCore'
             version = '1.17.1-SNAPSHOT'
+            artifact '../jars/'+ jar.archiveName
+        }
+    }
+    repositories {
+        maven {
+            url "http://dpnw.site:8081/repository/maven-snapshots/"
+            allowInsecureProtocol = true
         }
     }
 }
@@ -22,12 +32,12 @@ build {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 }
-
+jar{
+    destinationDirectory.set(file("$rootDir/jars"))
+}
 group 'github.com/darksoldier1404'
 version = '1.0.6.166'
-configurations {
-    jar.archiveName = 'DP-UniversalCore-_' + name + '-SNAPSHOT.jar'
-}
+
 repositories {
     mavenCentral()
     maven { url = 'https://oss.sonatype.org/content/repositories/central' }
