@@ -66,9 +66,23 @@ task DS_BUILD {
         buildFile.setText(updatedVersion)
     }
 }
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+}
 repositories {
     mavenCentral()
-    maven { url "https://repo.dmulloy2.net/repository/public/" }
+    maven {
+        name = "Paper"
+        url "https://papermc.io/repo/repository/maven-public/"
+    }
+    maven {
+        name = "Mojang"
+        url = uri("https://libraries.minecraft.net/")
+    }
+    maven {
+        name = "Spigot"
+        url "https://repo.dmulloy2.net/repository/public/"
+    }
     maven {
         name "essentialsx-releases"
         url "https://repo.essentialsx.net/releases/"
@@ -80,10 +94,11 @@ repositories {
     maven {
         url "https://org.bstats/bstats-bukkit"
     }
+    maven {
+        url 'https://repo.spring.io/plugins-release/'
+    }
 }
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-}
+
 dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
