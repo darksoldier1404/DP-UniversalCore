@@ -28,7 +28,7 @@ build {
 }
 
 group 'github.com/darksoldier1404'
-version = '1.0.6.164'
+version = '1.0.6.165'
 configurations {
     jar.archiveName = 'DP-UniversalCore-_' + name + '-SNAPSHOT.jar'
 }
@@ -48,9 +48,7 @@ repositories {
     maven {
         url "https://org.bstats/bstats-bukkit"
     }
-    maven {
-        url 'https://repo.spring.io/plugins-release/'
-    }
+
 }
 
 dependencies {

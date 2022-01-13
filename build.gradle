@@ -15,7 +15,7 @@ publishing {
     }
 }
 group 'github.com/darksoldier1404'
-version = '1.0.6.164'
+version = '1.0.6.165'
 
 
 compileJava.options.encoding = 'UTF-8'
@@ -73,7 +73,7 @@ repositories {
     mavenCentral()
     maven {
         name = "Mojang"
-        url = uri("https://libraries.minecraft.net/")
+        url "https://libraries.minecraft.net/"
     }
     maven {
         name = "Spigot"
@@ -90,9 +90,7 @@ repositories {
     maven {
         url "https://org.bstats/bstats-bukkit"
     }
-    maven {
-        url 'https://repo.spring.io/plugins-release/'
-    }
+
 }
 
 dependencies {
