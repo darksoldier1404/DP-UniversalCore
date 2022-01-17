@@ -4,6 +4,9 @@ plugins {
     id 'java'
     id 'maven-publish'
 }
+configurations {
+    jar.archiveName = 'DP-UniversalCore-_v1_18_1-SNAPSHOT.jar'
+}
 
 publishing {
     publications {
@@ -11,6 +14,13 @@ publishing {
             groupId = 'com.darksoldier1404.duc'
             artifactId = 'DP-UniversalCore'
             version = '1.18.1-SNAPSHOT'
+            artifact 'jars/'+ jar.archiveName
+        }
+    }
+    repositories {
+        maven {
+            url "http://dpnw.site:8081/repository/maven-snapshots/"
+            allowInsecureProtocol = true
         }
     }
 }
@@ -21,14 +31,13 @@ version = '1.0.6.166'
 compileJava.options.encoding = 'UTF-8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
-    sourceCompatibility = JavaVersion.VERSION_17
 }
-
-task deleteMyFile(type: Delete) {
-    delete "C:\\Minecraft Servers\\1.18 Play Ground\\plugins\\DP-UniversalCore-" + version + ".jar"
+jar{
+    destinationDirectory.set(file("$rootDir/jars"))
 }
-configurations {
-    jar.archiveName = 'DP-UniversalCore-_v1_18_1-SNAPSHOT.jar'
+build {
+    sourceCompatibility = 17
+    targetCompatibility = 17
 }
 task DS_BUILD {
     doFirst {
@@ -66,36 +75,19 @@ task DS_BUILD {
         buildFile.setText(updatedVersion)
     }
 }
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
-}
+
 repositories {
     mavenCentral()
     maven {
-        name = "Paper"
-        url "https://papermc.io/repo/repository/maven-public/"
-    }
-    maven {
-        name = "Mojang"
-        url = uri("https://libraries.minecraft.net/")
-    }
-    maven {
-        name = "Spigot"
-        url "https://repo.dmulloy2.net/repository/public/"
+        url "http://dpnw.site:8081/repository/maven-public/"
+        allowInsecureProtocol = true
     }
     maven {
         name "essentialsx-releases"
         url "https://repo.essentialsx.net/releases/"
     }
     maven {
-        url "http://dpnw.site:8081/repository/maven-public/"
-        allowInsecureProtocol = true
-    }
-    maven {
         url "https://org.bstats/bstats-bukkit"
-    }
-    maven {
-        url 'https://repo.spring.io/plugins-release/'
     }
 }
 
@@ -103,7 +95,8 @@ dependencies {
     implementation 'org.jetbrains:annotations:20.1.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
-    compileOnly 'org.spigotmc:spigot:1.18-R0.1-SNAPSHOT'
+    compileOnly 'org.bukkit.craftbukkit:craftbukkit:R0.1:1.18'
+    compileOnly 'org.spigotmc:spigot-api:R0.1:1.18'
     compileOnly 'net.essentialsx:EssentialsX:2.19.0'
     compileOnly "org.bstats:bstats-bukkit:2.2.1"
     compileOnly 'com.darksoldier1404.dvs:DP-VirtualStorage:1.0.0.41'

@@ -25,9 +25,9 @@ public class ParticleUtil {
     private final static BukkitScheduler scheduler = plugin.getServer().getScheduler();
 
     public static void sendParticlePacket(Location loc) {
-        PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(Particles.D, false, loc.getX(), loc.getY(), loc.getZ(), 0, 0, 0, 0, 0);
+        PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles(Particles.CRIT, false, loc.getX(), loc.getY(), loc.getZ(), 0, 0, 0, 0, 0);
         for (Player p : loc.getWorld().getPlayers()) {
-            ((CraftPlayer) p).getHandle().b.a(packet);
+            ((CraftPlayer) p).getHandle().connection.send(packet);
         }
     }
 
